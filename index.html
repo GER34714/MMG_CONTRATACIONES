@@ -21,30 +21,35 @@
       overflow-x: hidden;
     }
 
+    /* --- LOGO --- */
     header {
       text-align: center;
       padding: 60px 20px 20px;
     }
 
     header img {
-      width: 180px;
-      filter: drop-shadow(0 0 15px #b97cff);
-      animation: pulsoLogo 3s infinite ease-in-out;
+      width: 200px;
+      animation: glowLogo 4s infinite ease-in-out;
+      border-radius: 20px;
     }
 
-    @keyframes pulsoLogo {
-      0%, 100% { filter: drop-shadow(0 0 10px #b97cff); }
-      50% { filter: drop-shadow(0 0 25px #d4af37); }
+    @keyframes glowLogo {
+      0% { filter: drop-shadow(0 0 8px #b97cff); }
+      25% { filter: drop-shadow(0 0 18px #d4af37); }
+      50% { filter: drop-shadow(0 0 25px #00ffff); }
+      75% { filter: drop-shadow(0 0 18px #b97cff); }
+      100% { filter: drop-shadow(0 0 8px #d4af37); }
     }
 
     header h1 {
       font-size: 2rem;
       margin-top: 15px;
       color: #fff;
-      text-shadow: 0 0 15px #b97cff;
+      text-shadow: 0 0 20px #b97cff, 0 0 40px #d4af37;
       letter-spacing: 1px;
     }
 
+    /* --- CARRUSEL --- */
     .carrousel {
       display: flex;
       overflow-x: auto;
@@ -58,7 +63,7 @@
 
     .artista {
       flex: 0 0 80%;
-      background: rgba(20, 20, 20, 0.8);
+      background: rgba(20, 20, 20, 0.85);
       border-radius: 20px;
       box-shadow: 0 0 25px rgba(185,124,255,0.4);
       scroll-snap-align: center;
@@ -94,6 +99,7 @@
       line-height: 1.5em;
     }
 
+    /* --- BOTONES --- */
     .botones {
       display: flex;
       justify-content: center;
@@ -102,7 +108,8 @@
     }
 
     .btn {
-      background: linear-gradient(90deg, #b97cff, #d4af37);
+      background: linear-gradient(90deg, #b97cff, #d4af37, #00ffff);
+      background-size: 300% 300%;
       color: #fff;
       border: none;
       padding: 15px 30px;
@@ -111,11 +118,20 @@
       font-weight: 600;
       text-shadow: 0 0 10px rgba(0,0,0,.6);
       box-shadow: 0 0 20px #b97cff;
-      transition: all .3s;
+      transition: all .4s;
+      animation: pulseBtn 4s infinite ease-in-out;
     }
+
+    @keyframes pulseBtn {
+      0% { box-shadow: 0 0 20px #b97cff; }
+      33% { box-shadow: 0 0 25px #d4af37; }
+      66% { box-shadow: 0 0 25px #00ffff; }
+      100% { box-shadow: 0 0 20px #b97cff; }
+    }
+
     .btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 30px #d4af37;
+      box-shadow: 0 0 40px #d4af37;
     }
 
     footer {
@@ -140,13 +156,17 @@
         <p>Una propuesta única con energía y ritmo cordobés. Ideales para fiestas, festivales y eventos masivos. ¡Garantía de diversión total!</p>
       </div>
     </div>
+
     <div class="artista">
-      <img src="https://iili.io/2ZKzPzB.jpg" alt="Re Piola">
+      <img src="https://iili.io/KtSvboJ.jpg" alt="Re Piola">
       <div class="info">
         <h2>Re Piola</h2>
-        <p>Jóvenes, potentes y carismáticos. Re Piola lleva el cuarteto a otro nivel con su frescura y conexión con el público.</p>
+        <p>🔥 Banda revelación de la nueva movida tropical. Su estilo combina la energía del cuarteto moderno con la esencia de barrio.  
+        Con shows cargados de ritmo, luces, y buena vibra, **Re Piola** es sinónimo de fiesta, conexión y alegría.  
+        Perfectos para festivales, eventos privados y escenarios donde el público quiere bailar sin parar. 💃🎶</p>
       </div>
     </div>
+
     <div class="artista">
       <img src="https://iili.io/2ZKzY4Q.jpg" alt="Andy el Cumbiero">
       <div class="info">
@@ -154,6 +174,7 @@
         <p>Una de las voces más queridas de la movida tropical. Su presencia escénica y carisma lo hacen un show imperdible.</p>
       </div>
     </div>
+
     <div class="artista">
       <img src="https://iili.io/2ZKz6Ct.jpg" alt="Flor de Piedra">
       <div class="info">
