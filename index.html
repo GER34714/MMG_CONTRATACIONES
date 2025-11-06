@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MMG™ | Contrataciones de la Movida Tropical</title>
+
+  <link rel="icon" type="image/png" href="https://iili.io/KHOiff9.md.png" />
+  <meta property="og:title" content="MMG Manager Music Group™ | Contrataciones Oficiales">
+  <meta property="og:description" content="Catálogo oficial de artistas de la movida tropical. Contratá con seguridad y respaldo profesional.">
+  <meta property="og:image" content="https://iili.io/KHOiff9.md.png">
+  <meta name="theme-color" content="#9b59b6">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0a0a0a 60%, #000);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
+    }
+    header img {
+      width: 150px;
+      filter: drop-shadow(0 0 10px #b97cff);
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-top: 15px;
+      color: #fff;
+      text-shadow: 0 0 15px #b97cff;
+      letter-spacing: 1px;
+    }
+
+    .carrousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 40px 10px;
+    }
+    .carrousel::-webkit-scrollbar { display: none; }
+
+    .artista {
+      flex: 0 0 80%;
+      background: linear-gradient(180deg, #222, #111);
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(185,124,255,0.3);
+      scroll-snap-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s;
+    }
+    .artista:hover { transform: scale(1.03); }
+
+    .artista img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-bottom: 3px solid #b97cff;
+    }
+
+    .info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .info h2 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px #b97cff;
+    }
+
+    .info p {
+      font-size: 0.95rem;
+      color: #ccc;
+      line-height: 1.4em;
+    }
+
+    .botones {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 0 60px;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #b97cff, #d4af37);
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(0,0,0,.6);
+      box-shadow: 0 0 20px #b97cff;
+      transition: all .3s;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #d4af37;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://iili.io/KHOiff9.md.png" alt="MMG Manager Music Group">
+    <h1>MMG™ | Contrataciones Oficiales de la Movida Tropical</h1>
+  </header>
+
+  <section class="carrousel" id="carrousel">
+    <div class="artista">
+      <img src="https://iili.io/2ZKz9lb.jpg" alt="Banda Vamos Cuarteto">
+      <div class="info">
+        <h2>Banda Vamos Cuarteto</h2>
+        <p>Ritmo contagioso, energía en escena y una trayectoria que respalda. ¡El show ideal para cualquier evento con pura alegría cordobesa!</p>
+      </div>
+    </div>
+    <div class="artista">
+      <img src="https://iili.io/2ZKzPzB.jpg" alt="Re Piola">
+      <div class="info">
+        <h2>Re Piola</h2>
+        <p>Con estilo joven y vibrante, Re Piola es la nueva generación del cuarteto. Su energía prende cualquier pista de baile.</p>
+      </div>
+    </div>
+    <div class="artista">
+      <img src="https://iili.io/2ZKzY4Q.jpg" alt="Andy el Cumbiero">
+      <div class="info">
+        <h2>Andy el Cumbiero</h2>
+        <p>Un referente de la cumbia moderna. Voz potente, presencia escénica y conexión directa con el público.</p>
+      </div>
+    </div>
+    <div class="artista">
+      <img src="https://iili.io/2ZKz6Ct.jpg" alt="Flor de Piedra">
+      <div class="info">
+        <h2>Flor de Piedra</h2>
+        <p>Una banda histórica que sigue haciendo bailar generaciones. Sonido clásico con el sello inconfundible de la movida tropical.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="botones">
+    <button class="btn" onclick="window.open('https://wa.me/5491138219568','_blank')">📲 Contratar Ahora</button>
+    <button class="btn" onclick="window.open('https://instagram.com/mmgcontrataciones','_blank')">📸 Ver Instagram</button>
+  </div>
+
+  <footer>
+    © 2025 MMG Manager Music Group™ · Todos los derechos reservados · Powered by Ciborg347™
+  </footer>
+
+  <script>
+    // Movimiento automático del carrousel
+    const carrousel = document.getElementById('carrousel');
+    let scrollPos = 0;
+    setInterval(() => {
+      scrollPos += carrousel.offsetWidth * 0.8;
+      if (scrollPos >= carrousel.scrollWidth) scrollPos = 0;
+      carrousel.scrollTo({ left: scrollPos, behavior: 'smooth' });
+    }, 5000);
+  </script>
+</body>
+</html>
