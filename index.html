@@ -168,11 +168,12 @@
 let carrousel=document.getElementById('carrousel');
 let artistas=JSON.parse(localStorage.getItem('artistas'))||[];
 let editIndex=null;
+let adminActivo=false;
 
-// Render carrusel público
+// Render carrusel (modo público o admin)
 function renderCarrousel(){
   carrousel.innerHTML='';
-  artistas.forEach(a=>{
+  artistas.forEach((a,i)=>{
     const card=document.createElement('div');
     card.className='artista';
 
@@ -184,6 +185,17 @@ function renderCarrousel(){
     const info=document.createElement('div');
     info.className='info';
     info.innerHTML=`<h2>${a.nombre}</h2><p>${a.descripcion}</p>`;
+
+    // Botones visibles solo en modo admin
+    if(adminActivo){
+      const btns=document.createElement('div');
+      btns.style.marginTop='10px';
+      btns.innerHTML=`
+        <button style="background:#ff4444;border:none;padding:6px 10px;border-radius:8px;color:#fff;cursor:pointer;margin:4px;" onclick="eliminarArtista(${i})">Eliminar</button>
+        <button style="background:#00bfff;border:none;padding:6px 10px;border-radius:8px;color:#000;font-weight:700;cursor:pointer;margin:4px;" onclick="editarArtista(${i})">Editar</button>
+      `;
+      info.appendChild(btns);
+    }
 
     card.appendChild(img);
     card.appendChild(info);
@@ -210,6 +222,24 @@ function guardarCambios(){
   document.getElementById('descripcion').value='';
 }
 
+// Editar artista
+function editarArtista(i){
+  const a=artistas[i];
+  document.getElementById('nombre').value=a.nombre;
+  document.getElementById('imagen').value=a.img;
+  document.getElementById('descripcion').value=a.descripcion;
+  editIndex=i;
+  window.scrollTo(0,0);
+}
+
+// Eliminar artista
+function eliminarArtista(i){
+  if(confirm('¿Eliminar este artista?')){
+    artistas.splice(i,1);
+    renderCarrousel();
+  }
+}
+
 // Login admin
 const adminBtn=document.getElementById('adminBtn');
 const loginBox=document.getElementById('loginBox');
@@ -224,15 +254,18 @@ function login(){
     loginBox.style.display='none';
     adminPanel.style.display='block';
     adminBtn.style.display='none';
+    adminActivo=true;
+    renderCarrousel();
   }else{
     alert('Datos incorrectos');
   }
 }
 
-// Al recargar, panel cerrado
+// Al recargar: modo público
 adminPanel.style.display='none';
 adminBtn.style.display='block';
 loginBox.style.display='none';
+adminActivo=false;
 
 renderCarrousel();
   </script>
