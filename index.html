@@ -173,7 +173,6 @@ function guardarLocal(){
   localStorage.setItem('artistas',JSON.stringify(artistas));
 }
 
-// Render de artistas
 function renderCarrousel(){
   carrousel.innerHTML='';
   artistas.forEach((a,i)=>{
@@ -188,7 +187,6 @@ function renderCarrousel(){
     info.className='info';
     info.innerHTML=`<h2>${a.nombre}</h2><p>${a.descripcion}</p>`;
 
-    // Botones visibles solo en modo admin
     if(adminActivo){
       const btns=document.createElement('div');
       btns.style.marginTop='10px';
@@ -263,7 +261,6 @@ function login(){
   }
 }
 
-// Al recargar: modo público, pero mantiene los datos guardados
 window.onload=()=>{
   adminPanel.style.display='none';
   adminBtn.style.display='block';
