@@ -55,7 +55,16 @@
       backdrop-filter:blur(3px);
     }
     .artista:hover{transform:scale(1.03);}
-    .artista img{width:100%;height:320px;object-fit:cover;border-bottom:3px solid #b97cff;}
+    .artista img{
+      width:100%;
+      height:auto;
+      max-height:380px;
+      object-fit:contain;
+      background:#000;
+      border-bottom:3px solid #b97cff;
+      display:block;
+      margin:0 auto;
+    }
     .info{padding:20px;text-align:center;}
     .info h2{font-size:1.4rem;text-shadow:0 0 10px #b97cff;}
     .info p{font-size:0.95rem;color:#eee;line-height:1.5em;}
@@ -182,108 +191,125 @@
   <button class="copyBtn" id="copyBtn" style="display:none;" onclick="copiarCodigo()">📋 Copiar todo el código</button>
 
   <script>
-    const carrousel = document.getElementById('carrousel');
-    let artistas = JSON.parse(localStorage.getItem('artistas')) || [];
-    function renderCarrousel(){
-      carrousel.innerHTML='';
-      artistas.forEach((a,i)=>{
-        const card=document.createElement('div');
-        card.className='artista';
-        card.innerHTML=`
-          <img src="${a.img}" alt="${a.nombre}">
-          <div class="info">
-            <h2>${a.nombre}</h2>
-            <p>${a.descripcion}</p>
-            <button style="margin-top:10px;background:#ff4444;border:none;padding:6px 10px;border-radius:8px;color:#fff;cursor:pointer;" onclick="eliminarArtista(${i})">Eliminar</button>
-          </div>
-        `;
-        carrousel.appendChild(card);
-      });
-      localStorage.setItem('artistas',JSON.stringify(artistas));
-    }
+const carrousel = document.getElementById('carrousel');
+let artistas = JSON.parse(localStorage.getItem('artistas')) || [];
 
-    function agregarArtista(){
-      const nombre=document.getElementById('nombre').value.trim();
-      const img=document.getElementById('imagen').value.trim();
-      const descripcion=document.getElementById('descripcion').value.trim();
-      if(!nombre||!img||!descripcion){alert('Completá todos los campos');return;}
-      artistas.push({nombre,img,descripcion});
-      renderCarrousel();
-      document.getElementById('nombre').value='';
-      document.getElementById('imagen').value='';
-      document.getElementById('descripcion').value='';
-    }
+// Render principal
+function renderCarrousel(){
+  carrousel.innerHTML='';
+  artistas.forEach((a,i)=>{
+    const card=document.createElement('div');
+    card.className='artista';
+    card.innerHTML=`
+      <img src="${a.img}" alt="${a.nombre}" onerror="this.src='https://iili.io/KtXqRHJ.md.png'">
+      <div class="info">
+        <h2>${a.nombre}</h2>
+        <p>${a.descripcion}</p>
+        <button style="margin-top:10px;background:#ff4444;border:none;padding:6px 10px;border-radius:8px;color:#fff;cursor:pointer;" onclick="eliminarArtista(${i})">Eliminar</button>
+        <button style="margin-top:10px;background:#00bfff;border:none;padding:6px 10px;border-radius:8px;color:#000;font-weight:700;cursor:pointer;" onclick="editarArtista(${i})">Editar</button>
+      </div>
+    `;
+    carrousel.appendChild(card);
+  });
+  localStorage.setItem('artistas',JSON.stringify(artistas));
+}
 
-    function eliminarArtista(i){
-      if(confirm('¿Eliminar este artista?')){
-        artistas.splice(i,1);
-        renderCarrousel();
-      }
-    }
+// Agregar artista
+function agregarArtista(){
+  const nombre=document.getElementById('nombre').value.trim();
+  const img=document.getElementById('imagen').value.trim();
+  const descripcion=document.getElementById('descripcion').value.trim();
+  if(!nombre||!img||!descripcion){alert('Completá todos los campos');return;}
+  artistas.push({nombre,img,descripcion});
+  renderCarrousel();
+  document.getElementById('nombre').value='';
+  document.getElementById('imagen').value='';
+  document.getElementById('descripcion').value='';
+}
 
-    // Login simple
-    const adminBtn=document.getElementById('adminBtn');
-    const loginBox=document.getElementById('loginBox');
-    const adminPanel=document.getElementById('adminPanel');
+// Editar artista
+function editarArtista(i){
+  const a = artistas[i];
+  document.getElementById('nombre').value = a.nombre;
+  document.getElementById('imagen').value = a.img;
+  document.getElementById('descripcion').value = a.descripcion;
+  artistas.splice(i,1);
+  renderCarrousel();
+  window.scrollTo(0,0);
+}
 
-    adminBtn.addEventListener('click',()=>{
-      if(localStorage.getItem('adminLog')==='true'){
-        togglePanel(true);
-      }else{
-        loginBox.style.display='block';
-      }
-    });
-
-    function login(){
-      const u=document.getElementById('user').value;
-      const p=document.getElementById('pass').value;
-      if(u==='admin'&&p==='34714'){
-        localStorage.setItem('adminLog','true');
-        togglePanel(true);
-        loginBox.style.display='none';
-      }else{
-        alert('Datos incorrectos');
-      }
-    }
-
-    function togglePanel(show){
-      adminPanel.style.display=show?'block':'none';
-      adminBtn.style.display='none';
-    }
-
-    if(localStorage.getItem('adminLog')==='true'){togglePanel(true);}
+// Eliminar artista
+function eliminarArtista(i){
+  if(confirm('¿Eliminar este artista?')){
+    artistas.splice(i,1);
     renderCarrousel();
+  }
+}
 
-    // Exportador de landing
-    function exportarLanding(){
-      const fecha=new Date();
-      const nombreArchivo=`MMG_${fecha.getFullYear()}-${(fecha.getMonth()+1)
-        .toString().padStart(2,'0')}-${fecha.getDate()
-        .toString().padStart(2,'0')}_${fecha.getHours()
-        .toString().padStart(2,'0')}-${fecha.getMinutes()
-        .toString().padStart(2,'0')}.html`;
+// Login básico
+const adminBtn=document.getElementById('adminBtn');
+const loginBox=document.getElementById('loginBox');
+const adminPanel=document.getElementById('adminPanel');
 
-      const htmlCompleto=document.documentElement.outerHTML;
-      const blob=new Blob([htmlCompleto],{type:'text/html'});
-      const link=document.createElement('a');
-      link.href=URL.createObjectURL(blob);
-      link.download=nombreArchivo;
-      link.click();
+adminBtn.addEventListener('click',()=>{
+  loginBox.style.display='block';
+});
 
-      // Mostrar el código completo en pantalla
-      const exportBox=document.getElementById('exportBox');
-      const copyBtn=document.getElementById('copyBtn');
-      exportBox.style.display='block';
-      copyBtn.style.display='block';
-      exportBox.textContent=htmlCompleto;
-      window.scrollTo(0,document.body.scrollHeight);
-    }
+function login(){
+  const u=document.getElementById('user').value;
+  const p=document.getElementById('pass').value;
+  if(u==='admin'&&p==='34714'){
+    localStorage.setItem('adminLog','true');
+    loginBox.style.display='none';
+    adminPanel.style.display='block';
+    adminBtn.style.display='none';
+  }else{
+    alert('Datos incorrectos');
+  }
+}
 
-    function copiarCodigo(){
-      const code=document.getElementById('exportBox').textContent;
-      navigator.clipboard.writeText(code);
-      alert('Código copiado al portapapeles ✅');
-    }
+// Al recargar, panel cerrado
+if(localStorage.getItem('adminLog')==='true'){
+  adminPanel.style.display='none';
+  adminBtn.style.display='block';
+  loginBox.style.display='none';
+}else{
+  adminPanel.style.display='none';
+  adminBtn.style.display='block';
+  loginBox.style.display='none';
+}
+
+renderCarrousel();
+
+// Exportador
+function exportarLanding(){
+  const fecha=new Date();
+  const nombreArchivo=`MMG_${fecha.getFullYear()}-${(fecha.getMonth()+1)
+    .toString().padStart(2,'0')}-${fecha.getDate()
+    .toString().padStart(2,'0')}_${fecha.getHours()
+    .toString().padStart(2,'0')}-${fecha.getMinutes()
+    .toString().padStart(2,'0')}.html`;
+
+  const htmlCompleto=document.documentElement.outerHTML;
+  const blob=new Blob([htmlCompleto],{type:'text/html'});
+  const link=document.createElement('a');
+  link.href=URL.createObjectURL(blob);
+  link.download=nombreArchivo;
+  link.click();
+
+  const exportBox=document.getElementById('exportBox');
+  const copyBtn=document.getElementById('copyBtn');
+  exportBox.style.display='block';
+  copyBtn.style.display='block';
+  exportBox.textContent=htmlCompleto;
+  window.scrollTo(0,document.body.scrollHeight);
+}
+
+function copiarCodigo(){
+  const code=document.getElementById('exportBox').textContent;
+  navigator.clipboard.writeText(code);
+  alert('Código copiado al portapapeles ✅');
+}
   </script>
 </body>
 </html>
