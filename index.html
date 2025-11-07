@@ -169,6 +169,10 @@ let artistas=JSON.parse(localStorage.getItem('artistas'))||[];
 let editIndex=null;
 let adminActivo=false;
 
+function guardarLocal(){
+  localStorage.setItem('artistas',JSON.stringify(artistas));
+}
+
 function renderCarrousel(){
   carrousel.innerHTML='';
   artistas.forEach((a,i)=>{
@@ -194,25 +198,26 @@ function renderCarrousel(){
     card.appendChild(info);
     carrousel.appendChild(card);
   });
-  localStorage.setItem('artistas',JSON.stringify(artistas));
+  guardarLocal();
 }
 
 function guardarCambios(){
   const nombre=document.getElementById('nombre').value.trim();
   const img=document.getElementById('imagen').value.trim();
   const descripcion=document.getElementById('descripcion').value.trim();
-  if(!nombre||!img||!descripcion){alert('Completá todos los campos');return;}
+  if(!nombre||!img||!descripcion){alert('⚠️ Completá todos los campos antes de guardar.');return;}
   if(editIndex!==null){
     artistas[editIndex]={nombre,img,descripcion};
+    alert('🎵 Artista actualizado con éxito.');
     editIndex=null;
   }else{
     artistas.push({nombre,img,descripcion});
+    alert('✅ Nuevo artista agregado con éxito.');
   }
   renderCarrousel();
   document.getElementById('nombre').value='';
   document.getElementById('imagen').value='';
   document.getElementById('descripcion').value='';
-  alert('✅ Cambios guardados correctamente');
 }
 
 function editarArtista(i){
@@ -225,9 +230,11 @@ function editarArtista(i){
 }
 
 function eliminarArtista(i){
-  if(confirm('¿Eliminar este artista?')){
+  if(confirm('¿Eliminar este artista del catálogo?')){
     artistas.splice(i,1);
+    guardarLocal();
     renderCarrousel();
+    alert('🗑️ Artista eliminado correctamente.');
   }
 }
 
@@ -247,15 +254,15 @@ function login(){
     adminActivo=true;
     renderCarrousel();
   }else{
-    alert('Datos incorrectos');
+    alert('❌ Usuario o contraseña incorrectos.');
   }
 }
 
+// Al recargar: modo público pero datos persisten
 adminPanel.style.display='none';
 adminBtn.style.display='block';
 loginBox.style.display='none';
 adminActivo=false;
-
 renderCarrousel();
   </script>
 </body>
