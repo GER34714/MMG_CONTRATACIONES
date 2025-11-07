@@ -175,12 +175,18 @@ function renderCarrousel(){
   artistas.forEach(a=>{
     const card=document.createElement('div');
     card.className='artista';
-    card.innerHTML=`
-      <img src="${a.img}" alt="${a.nombre}" onerror="this.src='https://iili.io/KtXqRHJ.md.png'">
-      <div class="info">
-        <h2>${a.nombre}</h2>
-        <p>${a.descripcion}</p>
-      </div>`;
+
+    const img=document.createElement('img');
+    img.src=a.img.trim();
+    img.alt=a.nombre;
+    img.onerror=()=>{img.style.display='none';};
+
+    const info=document.createElement('div');
+    info.className='info';
+    info.innerHTML=`<h2>${a.nombre}</h2><p>${a.descripcion}</p>`;
+
+    card.appendChild(img);
+    card.appendChild(info);
     carrousel.appendChild(card);
   });
   localStorage.setItem('artistas',JSON.stringify(artistas));
