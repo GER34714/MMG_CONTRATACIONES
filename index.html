@@ -173,6 +173,7 @@ function guardarLocal(){
   localStorage.setItem('artistas',JSON.stringify(artistas));
 }
 
+// Render de artistas
 function renderCarrousel(){
   carrousel.innerHTML='';
   artistas.forEach((a,i)=>{
@@ -182,9 +183,12 @@ function renderCarrousel(){
     img.src=a.img.trim();
     img.alt=a.nombre;
     img.onerror=()=>{img.style.display='none';};
+
     const info=document.createElement('div');
     info.className='info';
     info.innerHTML=`<h2>${a.nombre}</h2><p>${a.descripcion}</p>`;
+
+    // Botones visibles solo en modo admin
     if(adminActivo){
       const btns=document.createElement('div');
       btns.style.marginTop='10px';
@@ -194,6 +198,7 @@ function renderCarrousel(){
       `;
       info.appendChild(btns);
     }
+
     card.appendChild(img);
     card.appendChild(info);
     carrousel.appendChild(card);
@@ -258,12 +263,14 @@ function login(){
   }
 }
 
-// Al recargar: modo público pero datos persisten
-adminPanel.style.display='none';
-adminBtn.style.display='block';
-loginBox.style.display='none';
-adminActivo=false;
-renderCarrousel();
+// Al recargar: modo público, pero mantiene los datos guardados
+window.onload=()=>{
+  adminPanel.style.display='none';
+  adminBtn.style.display='block';
+  loginBox.style.display='none';
+  adminActivo=false;
+  renderCarrousel();
+};
   </script>
 </body>
 </html>
