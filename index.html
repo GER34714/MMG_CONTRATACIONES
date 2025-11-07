@@ -130,29 +130,6 @@
       background:none;border:none;color:#ccc;
       text-decoration:underline;cursor:pointer;
     }
-    .exportBox{
-      display:none;
-      background:#111;
-      color:#0f0;
-      padding:20px;
-      border-radius:10px;
-      margin:20px;
-      overflow:auto;
-      max-height:70vh;
-      font-size:0.85rem;
-      white-space:pre-wrap;
-    }
-    .copyBtn{
-      display:block;
-      margin:10px auto;
-      padding:10px 20px;
-      border:none;
-      border-radius:8px;
-      background:#00ffff;
-      color:#000;
-      font-weight:700;
-      cursor:pointer;
-    }
   </style>
 </head>
 <body>
@@ -173,6 +150,7 @@
   </footer>
 
   <button id="adminBtn">🔐 Ingreso Admin</button>
+
   <div id="loginBox">
     <input type="text" id="user" placeholder="Usuario">
     <input type="password" id="pass" placeholder="Contraseña">
@@ -184,43 +162,31 @@
     <input type="text" id="imagen" placeholder="Link de imagen">
     <textarea id="descripcion" placeholder="Descripción del artista"></textarea>
     <button onclick="guardarCambios()">Guardar / Agregar</button>
-    <button onclick="exportarLanding()">📤 Exportar Landing</button>
   </div>
-
-  <div class="exportBox" id="exportBox"></div>
-  <button class="copyBtn" id="copyBtn" style="display:none;" onclick="copiarCodigo()">📋 Copiar todo el código</button>
 
   <script>
 let carrousel=document.getElementById('carrousel');
 let artistas=JSON.parse(localStorage.getItem('artistas'))||[];
 let editIndex=null;
 
-// Render principal
+// Render carrusel público
 function renderCarrousel(){
   carrousel.innerHTML='';
-  artistas.forEach((a,i)=>{
+  artistas.forEach(a=>{
     const card=document.createElement('div');
     card.className='artista';
-    let botones='';
-    if(localStorage.getItem('adminLog')==='true'){
-      botones=`
-        <button style="margin-top:10px;background:#ff4444;border:none;padding:6px 10px;border-radius:8px;color:#fff;cursor:pointer;" onclick="eliminarArtista(${i})">Eliminar</button>
-        <button style="margin-top:10px;background:#00bfff;border:none;padding:6px 10px;border-radius:8px;color:#000;font-weight:700;cursor:pointer;" onclick="editarArtista(${i})">Editar</button>
-      `;
-    }
     card.innerHTML=`
       <img src="${a.img}" alt="${a.nombre}" onerror="this.src='https://iili.io/KtXqRHJ.md.png'">
       <div class="info">
         <h2>${a.nombre}</h2>
         <p>${a.descripcion}</p>
-        ${botones}
       </div>`;
     carrousel.appendChild(card);
   });
   localStorage.setItem('artistas',JSON.stringify(artistas));
 }
 
-// Guardar / editar
+// Guardar / editar artista
 function guardarCambios(){
   const nombre=document.getElementById('nombre').value.trim();
   const img=document.getElementById('imagen').value.trim();
@@ -238,25 +204,7 @@ function guardarCambios(){
   document.getElementById('descripcion').value='';
 }
 
-// Editar artista
-function editarArtista(i){
-  const a=artistas[i];
-  document.getElementById('nombre').value=a.nombre;
-  document.getElementById('imagen').value=a.img;
-  document.getElementById('descripcion').value=a.descripcion;
-  editIndex=i;
-  window.scrollTo(0,0);
-}
-
-// Eliminar artista
-function eliminarArtista(i){
-  if(confirm('¿Eliminar este artista?')){
-    artistas.splice(i,1);
-    renderCarrousel();
-  }
-}
-
-// Login básico
+// Login admin
 const adminBtn=document.getElementById('adminBtn');
 const loginBox=document.getElementById('loginBox');
 const adminPanel=document.getElementById('adminPanel');
@@ -267,12 +215,12 @@ function login(){
   const u=document.getElementById('user').value;
   const p=document.getElementById('pass').value;
   if(u==='admin'&&p==='34714'){
-    localStorage.setItem('adminLog','true');
     loginBox.style.display='none';
     adminPanel.style.display='block';
     adminBtn.style.display='none';
-    renderCarrousel();
-  }else{alert('Datos incorrectos');}
+  }else{
+    alert('Datos incorrectos');
+  }
 }
 
 // Al recargar, panel cerrado
@@ -281,36 +229,6 @@ adminBtn.style.display='block';
 loginBox.style.display='none';
 
 renderCarrousel();
-
-// Exportador
-function exportarLanding(){
-  const fecha=new Date();
-  const nombreArchivo=`MMG_${fecha.getFullYear()}-${(fecha.getMonth()+1)
-    .toString().padStart(2,'0')}-${fecha.getDate()
-    .toString().padStart(2,'0')}_${fecha.getHours()
-    .toString().padStart(2,'0')}-${fecha.getMinutes()
-    .toString().padStart(2,'0')}.html`;
-
-  const htmlCompleto=document.documentElement.outerHTML;
-  const blob=new Blob([htmlCompleto],{type:'text/html'});
-  const link=document.createElement('a');
-  link.href=URL.createObjectURL(blob);
-  link.download=nombreArchivo;
-  link.click();
-
-  const exportBox=document.getElementById('exportBox');
-  const copyBtn=document.getElementById('copyBtn');
-  exportBox.style.display='block';
-  copyBtn.style.display='block';
-  exportBox.textContent=htmlCompleto;
-  window.scrollTo(0,document.body.scrollHeight);
-}
-
-function copiarCodigo(){
-  const code=document.getElementById('exportBox').textContent;
-  navigator.clipboard.writeText(code);
-  alert('Código copiado al portapapeles ✅');
-}
   </script>
 </body>
 </html>
