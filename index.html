@@ -88,7 +88,6 @@
     .btn:hover{transform:scale(1.05);box-shadow:0 0 40px #d4af37;}
     footer{text-align:center;padding:20px;font-size:0.9rem;color:#ccc;}
 
-    /* Panel Admin */
     #adminPanel{
       display:none;
       background:rgba(0,0,0,0.9);
@@ -141,8 +140,8 @@
   <section class="carrousel" id="carrousel"></section>
 
   <div class="botones">
-    <button class="btn" onclick="window.open('https://wa.me/5491138219568','_blank')">📲 Contratar Ahora</button>
-    <button class="btn" onclick="window.open('https://instagram.com/mmgcontrataciones','_blank')">📸 Ver Instagram</button>
+    <button class="btn" onclick="window.open('https://wa.me/5491157343551','_blank')">📲 Contratar Ahora</button>
+    <button class="btn" onclick="window.open('https://www.instagram.com/managermusicgrup1?igsh=OWwzczhuZDB6ZXo3','_blank')">📸 Ver Instagram</button>
   </div>
 
   <footer>
@@ -159,7 +158,7 @@
 
   <div id="adminPanel">
     <input type="text" id="nombre" placeholder="Nombre del artista">
-    <input type="text" id="imagen" placeholder="Link de imagen">
+    <input type="text" id="imagen" placeholder="Link de imagen (https://iili.io/xxxx.jpg)">
     <textarea id="descripcion" placeholder="Descripción del artista"></textarea>
     <button onclick="guardarCambios()">Guardar / Agregar</button>
   </div>
@@ -170,23 +169,18 @@ let artistas=JSON.parse(localStorage.getItem('artistas'))||[];
 let editIndex=null;
 let adminActivo=false;
 
-// Render carrusel (modo público o admin)
 function renderCarrousel(){
   carrousel.innerHTML='';
   artistas.forEach((a,i)=>{
     const card=document.createElement('div');
     card.className='artista';
-
     const img=document.createElement('img');
     img.src=a.img.trim();
     img.alt=a.nombre;
     img.onerror=()=>{img.style.display='none';};
-
     const info=document.createElement('div');
     info.className='info';
     info.innerHTML=`<h2>${a.nombre}</h2><p>${a.descripcion}</p>`;
-
-    // Botones visibles solo en modo admin
     if(adminActivo){
       const btns=document.createElement('div');
       btns.style.marginTop='10px';
@@ -196,7 +190,6 @@ function renderCarrousel(){
       `;
       info.appendChild(btns);
     }
-
     card.appendChild(img);
     card.appendChild(info);
     carrousel.appendChild(card);
@@ -204,7 +197,6 @@ function renderCarrousel(){
   localStorage.setItem('artistas',JSON.stringify(artistas));
 }
 
-// Guardar / editar artista
 function guardarCambios(){
   const nombre=document.getElementById('nombre').value.trim();
   const img=document.getElementById('imagen').value.trim();
@@ -220,9 +212,9 @@ function guardarCambios(){
   document.getElementById('nombre').value='';
   document.getElementById('imagen').value='';
   document.getElementById('descripcion').value='';
+  alert('✅ Cambios guardados correctamente');
 }
 
-// Editar artista
 function editarArtista(i){
   const a=artistas[i];
   document.getElementById('nombre').value=a.nombre;
@@ -232,7 +224,6 @@ function editarArtista(i){
   window.scrollTo(0,0);
 }
 
-// Eliminar artista
 function eliminarArtista(i){
   if(confirm('¿Eliminar este artista?')){
     artistas.splice(i,1);
@@ -240,7 +231,6 @@ function eliminarArtista(i){
   }
 }
 
-// Login admin
 const adminBtn=document.getElementById('adminBtn');
 const loginBox=document.getElementById('loginBox');
 const adminPanel=document.getElementById('adminPanel');
@@ -261,7 +251,6 @@ function login(){
   }
 }
 
-// Al recargar: modo público
 adminPanel.style.display='none';
 adminBtn.style.display='block';
 loginBox.style.display='none';
