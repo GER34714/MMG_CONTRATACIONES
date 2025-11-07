@@ -1,182 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MMG™ | Contrataciones de la Movida Tropical</title>
-<link rel="icon" type="image/png" href="https://iili.io/KtXqRHJ.md.png" />
-<meta name="theme-color" content="#b97cff">
-
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    font-family:'Poppins',sans-serif;
-    background:url('https://iili.io/KtWbyCv.jpg') no-repeat center center fixed;
-    background-size:cover;color:#fff;overflow-x:hidden;
-  }
-  header{text-align:center;padding:60px 20px 20px;}
-  header img{width:200px;animation:glowLogo 4s infinite ease-in-out;border-radius:20px;}
-  @keyframes glowLogo{
-    0%{filter:drop-shadow(0 0 8px #b97cff);}
-    50%{filter:drop-shadow(0 0 25px #00ffff);}
-    100%{filter:drop-shadow(0 0 8px #d4af37);}
-  }
-  header h1{font-size:2rem;margin-top:15px;text-shadow:0 0 20px #b97cff,0 0 40px #d4af37;}
-  .carrousel{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;padding:40px 10px;}
-  .artista{width:90%;max-width:350px;background:rgba(20,20,20,0.85);border-radius:20px;box-shadow:0 0 25px rgba(185,124,255,0.4);overflow:hidden;backdrop-filter:blur(3px);}
-  .artista img{width:100%;height:300px;object-fit:cover;background:#000;border-bottom:3px solid #b97cff;}
-  .info{padding:20px;text-align:center;}
-  .info h2{font-size:1.4rem;text-shadow:0 0 10px #b97cff;}
-  .info p{font-size:0.95rem;color:#eee;line-height:1.5em;}
-  .btn{
-    background:linear-gradient(90deg,#b97cff,#d4af37,#00ffff);
-    background-size:300% 300%;
-    color:#fff;border:none;padding:15px 30px;border-radius:30px;
-    cursor:pointer;font-weight:600;text-shadow:0 0 10px rgba(0,0,0,.6);
-    box-shadow:0 0 20px #b97cff;transition:all .4s;
-  }
-  .btn:hover{transform:scale(1.05);box-shadow:0 0 40px #d4af37;}
-  footer{text-align:center;padding:20px;font-size:0.9rem;color:#ccc;}
-  #adminBtn{display:block;margin:0 auto 40px auto;background:none;border:none;color:#ccc;text-decoration:underline;cursor:pointer;}
-  #loginBox,#adminPanel{
-    display:none;background:rgba(0,0,0,0.9);padding:20px;border-radius:15px;max-width:400px;margin:30px auto;
-    box-shadow:0 0 20px #b97cff;
-  }
-  #loginBox input,#adminPanel input,#adminPanel textarea{
-    width:100%;padding:10px;margin:8px 0;border:none;border-radius:8px;font-size:0.9rem;
-  }
-  #loginBox button,#adminPanel button{
-    width:100%;margin-top:10px;padding:10px;border:none;border-radius:8px;
-    background:#b97cff;color:#fff;font-weight:600;cursor:pointer;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MMG™ | Contrataciones de la Movida Tropical</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <meta name="theme-color" content="#b97cff">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <img src="https://iili.io/KtXqRHJ.md.png" alt="MMG Manager Music Group">
-  <h1>MMG™ | Contrataciones Oficiales de la Movida Tropical</h1>
-</header>
+  <header>
+    <img src="assets/logo.png" alt="MMG Manager Music Group">
+    <h1>MMG™ | Contrataciones Oficiales de la Movida Tropical</h1>
+  </header>
 
-<section id="carrousel" class="carrousel"></section>
+  <section id="carrousel" class="carrousel"></section>
 
-<div class="botones" style="display:flex;justify-content:center;gap:20px;margin:40px 0;">
-  <button class="btn" onclick="window.open('https://wa.me/5491157343551','_blank')">📲 Contratar Ahora</button>
-  <button class="btn" onclick="window.open('https://www.instagram.com/managermusicgrup1?igsh=OWwzczhuZDB6ZXo3','_blank')">📸 Ver Instagram</button>
-</div>
+  <div class="botones">
+    <button class="btn" onclick="window.open('https://wa.me/5491157343551','_blank')">📲 Contratar Ahora</button>
+    <button class="btn" onclick="window.open('https://www.instagram.com/managermusicgrup1?igsh=OWwzczhuZDB6ZXo3','_blank')">📸 Ver Instagram</button>
+  </div>
 
-<footer>© 2025 MMG Manager Music Group™ · Powered by Ciborg347™</footer>
+  <footer>© 2025 MMG Manager Music Group™ · Powered by Ciborg347™</footer>
 
-<button id="adminBtn">🔐 Ingreso Admin</button>
-
-<div id="loginBox">
-  <input type="text" id="user" placeholder="Usuario">
-  <input type="password" id="pass" placeholder="Contraseña">
-  <button onclick="login()">Ingresar</button>
-</div>
-
-<div id="adminPanel">
-  <input type="text" id="nombre" placeholder="Nombre del artista">
-  <input type="text" id="imagen" placeholder="Link de imagen (https://iili.io/xxxx.jpg)">
-  <textarea id="descripcion" placeholder="Descripción del artista"></textarea>
-  <button onclick="guardarArtista()">Guardar / Agregar</button>
-  <button onclick="generarHTML()">💾 Generar HTML Final</button>
-</div>
-
-<script>
-let artistas = JSON.parse(localStorage.getItem('artistas')) || [];
-let admin = false;
-let editIndex = null;
-
-function renderArtistas(){
-  const cont = document.getElementById('carrousel');
-  cont.innerHTML = '';
-  artistas.forEach((a, i) => {
-    const div = document.createElement('div');
-    div.className = 'artista';
-    div.innerHTML = `
-      <img src="${a.img}" alt="${a.nombre}" onerror="this.src='https://iili.io/KtXqRHJ.md.png'">
-      <div class="info">
-        <h2>${a.nombre}</h2>
-        <p>${a.descripcion}</p>
-        ${admin ? `
-          <button style="background:#00bfff;color:#000;border:none;border-radius:8px;padding:6px 10px;margin:4px;" onclick="editar(${i})">Editar</button>
-          <button style="background:#ff4444;color:#fff;border:none;border-radius:8px;padding:6px 10px;margin:4px;" onclick="eliminar(${i})">Eliminar</button>
-        ` : ''}
-      </div>`;
-    cont.appendChild(div);
-  });
-}
-
-function guardarArtista(){
-  const n = document.getElementById('nombre').value.trim();
-  const i = document.getElementById('imagen').value.trim();
-  const d = document.getElementById('descripcion').value.trim();
-  if (!n || !i || !d) return alert('⚠️ Completá todos los campos.');
-  if (editIndex !== null) {
-    artistas[editIndex] = { nombre:n, img:i, descripcion:d };
-    editIndex = null;
-    alert('🎵 Artista actualizado.');
-  } else {
-    artistas.push({ nombre:n, img:i, descripcion:d });
-    alert('✅ Nuevo artista agregado.');
-  }
-  localStorage.setItem('artistas', JSON.stringify(artistas));
-  renderArtistas();
-  document.getElementById('nombre').value = '';
-  document.getElementById('imagen').value = '';
-  document.getElementById('descripcion').value = '';
-}
-
-function editar(i){
-  const a = artistas[i];
-  document.getElementById('nombre').value = a.nombre;
-  document.getElementById('imagen').value = a.img;
-  document.getElementById('descripcion').value = a.descripcion;
-  editIndex = i;
-}
-
-function eliminar(i){
-  if(confirm('¿Eliminar artista?')){
-    artistas.splice(i,1);
-    localStorage.setItem('artistas', JSON.stringify(artistas));
-    renderArtistas();
-  }
-}
-
-function login(){
-  const u = document.getElementById('user').value;
-  const p = document.getElementById('pass').value;
-  if(u === 'admin' && p === '34714'){
-    admin = true;
-    document.getElementById('loginBox').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
-    document.getElementById('adminBtn').style.display = 'none';
-    renderArtistas();
-  } else {
-    alert('❌ Usuario o contraseña incorrectos.');
-  }
-}
-
-function generarHTML(){
-  const contenido = document.documentElement.outerHTML;
-  const blob = new Blob([contenido.replace(
-    /let artistas = JSON\.parse\(localStorage\.getItem\('artistas'\)\) \|\| \[\];/,
-    `let artistas = ${JSON.stringify(artistas)};`
-  )], {type: 'text/html'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'index.html';
-  a.click();
-  URL.revokeObjectURL(url);
-  alert('✅ Archivo listo para subir a Render');
-}
-
-document.getElementById('adminBtn').addEventListener('click', () => {
-  document.getElementById('loginBox').style.display = 'block';
-});
-
-window.onload = () => renderArtistas();
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
