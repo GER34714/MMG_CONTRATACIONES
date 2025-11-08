@@ -15,7 +15,7 @@ async function cargarArtistas() {
         <div class="info">
           <h2>${a.nombre}</h2>
           <p>${a.descripcion}</p>
-          <button class="btn" onclick="reservar('${a.nombre}')">🎤 Contratar Artista</button>
+          <button class="btn" onclick="contratar('${a.nombre}')">🎤 Contratar Artista</button>
         </div>
       `;
       contenedor.appendChild(card);
@@ -26,9 +26,9 @@ async function cargarArtistas() {
   }
 }
 
-function reservar(nombre) {
+function contratar(nombre) {
   const numero = "5491157343551";
-  const mensaje = encodeURIComponent(`Hola 👋, quiero pedir una reserva para ${nombre} (MMG | Representante de Artistas).`);
+  const mensaje = encodeURIComponent(`Hola 👋, quiero contratar a ${nombre} (MMG | Representante de Artistas).`);
   window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank');
 }
 
