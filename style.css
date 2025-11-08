@@ -1,178 +1,114 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top, rgba(185,124,255,0.25), rgba(0,0,0,0.95)), url('https://iili.io/KtWbyCv.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-  overflow-x: hidden;
+/* Partículas detrás */
+#particles-js{
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  z-index:-1;
 }
 
-header {
-  text-align: center;
-  padding: 60px 20px 20px;
+/* --- HEADER --- */
+header{text-align:center;padding:60px 20px 20px;}
+header img{width:180px;border-radius:20px;animation:glowLogo 4s infinite ease-in-out;}
+@keyframes glowLogo{
+  0%{filter:drop-shadow(0 0 8px #b97cff);}
+  50%{filter:drop-shadow(0 0 25px #d4af37);}
+  100%{filter:drop-shadow(0 0 8px #00ffff);}
+}
+header h1{
+  font-size:1.8rem;margin-top:15px;
+  text-shadow:0 0 25px #b97cff,0 0 40px #d4af37;
 }
 
-header img {
-  width: 180px;
-  border-radius: 20px;
-  animation: glowLogo 4s infinite ease-in-out;
+/* --- CARRUSEL --- */
+.artistas{
+  display:flex;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  gap:25px;
+  padding:40px 15px;
+  animation:slideMove 30s linear infinite;
 }
-
-@keyframes glowLogo {
-  0% { filter: drop-shadow(0 0 8px #b97cff); }
-  50% { filter: drop-shadow(0 0 25px #d4af37); }
-  100% { filter: drop-shadow(0 0 8px #00ffff); }
+@keyframes slideMove{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
 }
-
-header h1 {
-  font-size: 1.8rem;
-  margin-top: 15px;
-  text-shadow: 0 0 25px #b97cff, 0 0 50px #d4af37;
-  letter-spacing: 1px;
-}
-
-/* --- CONTENEDOR ARTISTAS --- */
-.artistas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  padding: 40px 15px;
-}
+.artistas::-webkit-scrollbar{display:none;}
 
 /* --- TARJETA --- */
-.artista {
-  background: rgba(10, 10, 10, 0.85);
-  border-radius: 18px;
-  box-shadow: 0 0 25px rgba(185,124,255,0.4);
-  overflow: hidden;
-  width: 45%;
-  max-width: 420px;
-  text-align: center;
-  position: relative;
-  animation: fadeInUp 1.2s ease both;
-  transition: transform .3s;
+.artista{
+  flex:0 0 45%;
+  max-width:420px;
+  background:rgba(40,40,60,0.6);
+  border-radius:18px;
+  box-shadow:0 0 25px rgba(185,124,255,0.4);
+  overflow:hidden;
+  text-align:center;
+  position:relative;
+  scroll-snap-align:center;
+  backdrop-filter:blur(4px);
+  transition:transform .3s;
+}
+.artista:hover{transform:scale(1.05);}
+.artista img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border:4px solid transparent;
+  border-image:linear-gradient(45deg,#d4af37,#b97cff);
+  border-image-slice:1;
+  transition:all .4s ease;
+}
+.artista img:hover{filter:brightness(1.1);}
+.info{padding:20px;}
+.info h2{
+  font-size:1.3rem;margin-bottom:10px;
+  text-shadow:0 0 10px #b97cff;
+}
+.info p{
+  font-size:0.95rem;
+  color:#eee;
+  line-height:1.5em;
+  margin-bottom:20px;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* --- BOTÓN --- */
+.btn{
+  background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
+  background-size:300% 300%;
+  color:#000;
+  border:none;
+  padding:12px 28px;
+  border-radius:35px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(212,175,55,0.7);
+  text-shadow:0 0 8px rgba(255,255,255,0.5);
+  animation:glowBtn 3s infinite alternate;
+  margin-bottom:20px;
 }
-
-.artista:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px rgba(212,175,55,0.6);
+@keyframes glowBtn{
+  0%{box-shadow:0 0 20px #b97cff,0 0 30px #d4af37;}
+  100%{box-shadow:0 0 40px #ffcc70,0 0 60px #b97cff;}
 }
-
-/* --- IMAGEN CON MARCO NEÓN --- */
-.artista img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border: 4px solid transparent;
-  border-image: linear-gradient(45deg, #d4af37, #b97cff);
-  border-image-slice: 1;
-  box-shadow: 0 0 30px rgba(185,124,255,0.5);
-  transition: all 0.5s ease;
-}
-
-.artista img:hover {
-  filter: brightness(1.15);
-  box-shadow: 0 0 40px rgba(212,175,55,0.8);
-}
-
-/* --- INFO --- */
-.info {
-  padding: 20px;
-}
-
-.info h2 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: #fff;
-  text-shadow: 0 0 10px #b97cff;
-}
-
-.info p {
-  font-size: 0.95rem;
-  color: #ddd;
-  margin-bottom: 20px;
-  line-height: 1.5em;
-}
-
-/* --- BOTÓN CONTRATAR CON EFECTO NEÓN --- */
-.btn {
-  display: inline-block;
-  background: linear-gradient(90deg, #d4af37, #ffcc70, #d4af37);
-  background-size: 200% 200%;
-  color: #000;
-  padding: 12px 30px;
-  border-radius: 35px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all .3s;
-  box-shadow: 0 0 20px rgba(212,175,55,0.6), 0 0 40px rgba(185,124,255,0.4);
-  text-shadow: 0 0 10px rgba(255,255,255,0.6);
-  animation: glowBtn 3s infinite alternate;
-  position: relative;
-  margin-bottom: 20px;
-}
-
-@keyframes glowBtn {
-  0% {
-    box-shadow: 0 0 15px #d4af37, 0 0 25px #b97cff;
-  }
-  100% {
-    box-shadow: 0 0 35px #ffcc70, 0 0 55px #b97cff;
-  }
-}
-
-.btn:hover {
-  transform: scale(1.1);
-  background-position: right center;
-  color: #111;
-  text-shadow: 0 0 15px rgba(255,255,255,0.8);
+.btn:hover{
+  transform:scale(1.1);
+  background-position:right center;
 }
 
 /* --- FOOTER --- */
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #ccc;
-  font-size: 0.9rem;
-}
+footer{text-align:center;padding:20px;color:#ccc;font-size:0.9rem;}
 
 /* --- RESPONSIVO --- */
-@media (max-width: 768px) {
-  .artistas {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 20px;
-  }
-
-  .artista {
-    flex: 0 0 85%;
-    scroll-snap-align: center;
-    width: auto;
-  }
-
-  .artista img {
-    height: 240px;
-  }
-
-  header h1 {
-    font-size: 1.4rem;
-  }
+@media(max-width:768px){
+  .artista{flex:0 0 85%;}
+  .artista img{height:240px;}
+  header h1{font-size:1.4rem;}
 }
