@@ -6,14 +6,14 @@ body{
   overflow-x:hidden;
 }
 
-/* Partículas detrás */
+/* Fondo partículas */
 #particles-js{
   position:fixed;
   top:0;left:0;width:100%;height:100%;
   z-index:-1;
 }
 
-/* --- HEADER --- */
+/* HEADER */
 header{text-align:center;padding:60px 20px 20px;}
 header img{width:180px;border-radius:20px;animation:glowLogo 4s infinite ease-in-out;}
 @keyframes glowLogo{
@@ -26,37 +26,39 @@ header h1{
   text-shadow:0 0 25px #b97cff,0 0 40px #d4af37;
 }
 
-/* --- CARRUSEL --- */
+/* --- CARRUSEL ROCKOLA --- */
+.artistas-wrapper{
+  overflow:hidden;
+  width:100%;
+  position:relative;
+  padding:40px 0;
+}
+
 .artistas{
   display:flex;
-  flex-wrap:nowrap;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
   gap:25px;
-  padding:40px 15px;
-  animation:slideMove 30s linear infinite;
+  width:max-content;
+  animation:rockola 45s linear infinite;
 }
-@keyframes slideMove{
+
+@keyframes rockola{
   0%{transform:translateX(0);}
   100%{transform:translateX(-50%);}
 }
-.artistas::-webkit-scrollbar{display:none;}
 
-/* --- TARJETA --- */
+/* --- TARJETAS --- */
 .artista{
-  flex:0 0 45%;
-  max-width:420px;
-  background:rgba(40,40,60,0.6);
+  width:340px;
+  background:rgba(40,40,60,0.7);
   border-radius:18px;
   box-shadow:0 0 25px rgba(185,124,255,0.4);
   overflow:hidden;
   text-align:center;
-  position:relative;
-  scroll-snap-align:center;
-  backdrop-filter:blur(4px);
+  backdrop-filter:blur(6px);
   transition:transform .3s;
 }
-.artista:hover{transform:scale(1.05);}
+.artista:hover{transform:scale(1.08);}
+
 .artista img{
   width:100%;
   height:280px;
@@ -67,6 +69,7 @@ header h1{
   transition:all .4s ease;
 }
 .artista img:hover{filter:brightness(1.1);}
+
 .info{padding:20px;}
 .info h2{
   font-size:1.3rem;margin-bottom:10px;
@@ -79,7 +82,7 @@ header h1{
   margin-bottom:20px;
 }
 
-/* --- BOTÓN --- */
+/* --- BOTÓN CONTRATAR --- */
 .btn{
   background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
   background-size:300% 300%;
@@ -108,7 +111,7 @@ footer{text-align:center;padding:20px;color:#ccc;font-size:0.9rem;}
 
 /* --- RESPONSIVO --- */
 @media(max-width:768px){
-  .artista{flex:0 0 85%;}
+  .artista{width:85%;}
   .artista img{height:240px;}
   header h1{font-size:1.4rem;}
 }
