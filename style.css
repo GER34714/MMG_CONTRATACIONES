@@ -220,3 +220,13 @@ footer a:hover{
   header h1{font-size:1.4rem;}
   .swiper{width:95%;}
 }
+/* --- Animación de aparición pro --- */
+.fade-in {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: fadeZoom 1.2s ease forwards;
+}
+@keyframes fadeZoom {
+  0% {opacity: 0; transform: scale(0.9);}
+  100% {opacity: 1; transform: scale(1);}
+}
