@@ -41,11 +41,24 @@ header h1{
   text-shadow:0 0 35px #b97cff,0 0 60px #d4af37;
 }
 
-/* --- CARRUSEL ROCKOLA --- */
+/* Texto vendedor */
+.promo-text{
+  text-align:center;
+  max-width:850px;
+  margin:0 auto;
+  color:#fffbea;
+  font-size:1.2rem;
+  line-height:1.6em;
+  text-shadow:0 0 15px #000,0 0 25px #b97cff;
+  padding:20px;
+}
+
+/* --- CARRUSEL --- */
 .artistas-wrapper{
   width:100%;
   position:relative;
   padding:40px 0;
+  margin-top:60px;
 }
 
 .swiper{
@@ -58,18 +71,6 @@ header h1{
   display:flex;
   justify-content:center;
   align-items:center;
-  opacity:0;
-  transform:translateY(30px);
-  animation:fadeInSlide 1s ease forwards;
-}
-.swiper-slide:nth-child(odd){animation-delay:.2s;}
-.swiper-slide:nth-child(even){animation-delay:.4s;}
-
-@keyframes fadeInSlide{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
 }
 
 /* --- TARJETAS --- */
@@ -98,7 +99,7 @@ header h1{
 }
 .artista img:hover{filter:brightness(1.1);}
 
-/* --- INFO --- */
+/* INFO */
 .info{
   padding:20px;
   flex:1;
@@ -122,7 +123,7 @@ header h1{
   overflow:hidden;
 }
 
-/* --- BOTÓN CONTRATAR --- */
+/* BOTÓN */
 .btn{
   background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
   background-size:300% 300%;
@@ -133,11 +134,9 @@ header h1{
   font-weight:700;
   cursor:pointer;
   box-shadow:0 0 25px rgba(212,175,55,0.7);
-  text-shadow:0 0 8px rgba(255,255,255,0.5);
   animation:glowBtn 3s infinite alternate;
   margin:20px auto 25px auto;
   display:block;
-  align-self:center;
 }
 @keyframes glowBtn{
   0%{box-shadow:0 0 20px #b97cff,0 0 30px #d4af37;}
@@ -148,7 +147,7 @@ header h1{
   background-position:right center;
 }
 
-/* --- FLECHAS --- */
+/* FLECHAS */
 .swiper-button-prev,
 .swiper-button-next{
   color:#fff;
@@ -161,32 +160,37 @@ header h1{
   color:#d4af37;
   transform:scale(1.1);
 }
+.swiper-pagination{display:none !important;}
 
-/* ❌ eliminamos los puntos */
-.swiper-pagination{
-  display:none !important;
+/* BOTONES FLOTANTES */
+.float-btn{
+  position:fixed;
+  bottom:20px;
+  z-index:999;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(0,0,0,0.4);
+  transition:all .3s ease;
 }
+.float-btn:hover{transform:scale(1.1);}
+.whatsapp{background-color:#25D366;left:20px;}
+.instagram{background:radial-gradient(circle at 30% 30%,#f58529,#dd2a7b,#8134af,#515bd4);right:20px;}
+.float-btn img{width:30px;height:30px;filter:drop-shadow(0 0 6px #000);}
 
-/* --- FOOTER --- */
-footer{
-  text-align:center;
-  padding:20px;
-  color:#ccc;
-  font-size:0.9rem;
-}
+/* FOOTER */
+footer{text-align:center;padding:30px 15px;color:#ccc;font-size:0.9rem;}
+footer a{color:#b97cff;text-decoration:none;font-weight:600;}
+footer a:hover{color:#ffcc70;text-shadow:0 0 10px #b97cff;}
 
-/* --- RESPONSIVO --- */
+/* RESPONSIVO */
 @media(max-width:768px){
   .artista{width:85%;height:460px;}
   .artista img{height:200px;}
-  .info p{max-height:70px;}
-  header h1{font-size:1.4rem;}
   .swiper{width:95%;}
-}
-
-/* --- SOLO PC: mantener centrada la imagen --- */
-@media (min-width: 1024px) {
-  body {
-    background-position:center top;
-  }
 }
