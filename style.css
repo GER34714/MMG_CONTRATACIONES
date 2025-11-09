@@ -4,8 +4,9 @@ html, body {
 }
 body{
   font-family:'Poppins',sans-serif;
-  background:url("https://iili.io/KbTijol.jpg") no-repeat center center fixed;
-  background-size:cover; /* ✅ ocupa toda la pantalla, sin dejar fondo negro */
+  background:url("https://iili.io/KbTijol.jpg") no-repeat center center;
+  background-size:cover;          /* ✅ ocupa toda la pantalla */
+  background-attachment:scroll;   /* evita saltos o recortes en móviles */
   color:#fff;
   overflow-x:hidden;
   min-height:100vh;
@@ -187,11 +188,11 @@ footer{
   header h1{font-size:1.4rem;}
   .swiper{width:95%;}
 
-  /* 👇 Fondo adaptado a móviles sin fondo negro */
+  /* ✅ Fondo 100% pantalla también en móviles */
   body {
-    background-attachment:scroll;
     background-position:center center;
-    background-size:cover; /* ✅ asegura que cubra toda la pantalla sin negro */
+    background-size:cover;
+    background-attachment:scroll;
   }
 }
 
