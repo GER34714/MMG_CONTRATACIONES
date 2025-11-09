@@ -1,14 +1,10 @@
 *{margin:0;padding:0;box-sizing:border-box;}
-html, body {
-  height:100%;
-}
 body{
   font-family:'Poppins',sans-serif;
-  background:#000 url("https://iili.io/KbTijol.jpg") no-repeat center top fixed;
+  background:#000 url("https://iili.io/KbTijol.jpg") no-repeat center top;
   background-size:cover;
   color:#fff;
   overflow-x:hidden;
-  min-height:100vh;
 }
 
 /* Fondo partículas */
@@ -24,6 +20,18 @@ header{
   padding:60px 20px 20px;
   position:relative;
   z-index:10;
+}
+
+/* Fondo negro solo detrás del logo */
+header::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  z-index:-1;
 }
 
 header img{
@@ -186,17 +194,11 @@ footer{
   .info p{max-height:70px;}
   header h1{font-size:1.4rem;}
   .swiper{width:95%;}
-
-  /* 👇 bajamos más la imagen y evitamos fondo blanco */
-  body {
-    background-position:center -300px;
-    background-attachment:scroll; /* permite que se mueva suavemente al hacer scroll */
-  }
 }
 
-/* --- SOLO PC --- */
+/* --- SOLO PC: bajar un poco la imagen de fondo --- */
 @media (min-width: 1024px) {
   body {
-    background-position:center top;
+    background-position: center -250px; /* 👈 ajustá este valor si querés bajarla más o menos */
   }
 }
