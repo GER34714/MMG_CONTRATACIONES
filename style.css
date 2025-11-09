@@ -9,7 +9,7 @@ html, body {
 body{
   font-family:'Poppins',sans-serif;
   background:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), /* capa oscura encima */
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
     url("https://iili.io/KbTijol.jpg") no-repeat center center fixed;
   background-size:cover;
   min-height:100dvh;
@@ -85,7 +85,7 @@ header p{
   align-items:center;
 }
 
-/* Tarjetas */
+/* --- TARJETAS --- */
 .artista{
   width:330px;
   background:rgba(25,25,45,0.85);
@@ -102,15 +102,18 @@ header p{
 }
 .artista:hover{transform:scale(1.05);}
 
+/* ✅ IMÁGENES COMPLETAS SIN CORTES */
 .artista img{
   width:100%;
-  height:240px;
-  object-fit:cover;
+  height:280px;
+  object-fit:contain;
+  background:#000;
   border-bottom:3px solid #b97cff;
   transition:all .4s ease;
 }
 .artista img:hover{filter:brightness(1.1);}
 
+/* --- INFO --- */
 .info{
   padding:20px;
   flex:1;
@@ -136,7 +139,7 @@ header p{
   overflow:hidden;
 }
 
-/* Botón */
+/* --- BOTÓN CONTRATAR --- */
 .btn{
   background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
   background-size:300% 300%;
@@ -161,7 +164,7 @@ header p{
   background-position:right center;
 }
 
-/* Flechas */
+/* --- FLECHAS --- */
 .swiper-button-prev,
 .swiper-button-next{
   color:#fff;
@@ -175,12 +178,12 @@ header p{
   transform:scale(1.1);
 }
 
-/* Sin puntos */
+/* ❌ eliminamos los puntos */
 .swiper-pagination{
   display:none !important;
 }
 
-/* Footer */
+/* --- FOOTER --- */
 footer{
   text-align:center;
   padding:20px;
@@ -197,12 +200,12 @@ footer a:hover{
   text-shadow:0 0 10px #b97cff;
 }
 
-/* Responsivo */
+/* --- RESPONSIVO --- */
 @media(max-width:768px){
   header img{width:220px;}
   header h1{font-size:1.6rem;}
   .artista{width:85%;height:460px;}
-  .artista img{height:200px;}
+  .artista img{height:230px;}
   .info p{max-height:70px;}
   .swiper{width:95%;}
 }
