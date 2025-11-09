@@ -160,23 +160,41 @@ header h1{
   background-position:right center;
 }
 
-/* --- FLECHAS --- */
-.swiper-button-prev,
-.swiper-button-next{
+/* --- SECCIÓN INSTAGRAM --- */
+.instagram-section {
+  text-align:center;
+  margin:30px 0 20px;
+}
+.instagram-section h2 {
+  font-size:1.4rem;
   color:#fff;
-  text-shadow:0 0 10px #b97cff,0 0 20px #d4af37;
-  filter:drop-shadow(0 0 8px #b97cff);
-  transition:all .3s ease;
+  text-shadow:0 0 12px #b97cff, 0 0 20px #d4af37;
+  margin-bottom:10px;
 }
-.swiper-button-prev:hover,
-.swiper-button-next:hover{
-  color:#d4af37;
-  transform:scale(1.1);
+.instagram-link {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(0,0,0,0.5);
+  padding:10px 20px;
+  border-radius:50px;
+  text-decoration:none;
+  color:#fff;
+  box-shadow:0 0 20px rgba(185,124,255,0.4);
+  transition:all 0.3s ease;
 }
-
-/* ❌ eliminamos los puntos */
-.swiper-pagination{
-  display:none !important;
+.instagram-link img {
+  width:35px;
+  height:35px;
+  filter:drop-shadow(0 0 6px #b97cff);
+}
+.instagram-link span {
+  font-size:1rem;
+  font-weight:600;
+}
+.instagram-link:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 30px #d4af37;
 }
 
 /* --- FOOTER --- */
@@ -187,7 +205,6 @@ footer{
   font-size:0.9rem;
   background:rgba(0,0,0,0.7);
   margin-top:auto;
-  position:relative;
 }
 .firma-ciborg {
   color:#00ffff;
@@ -201,44 +218,29 @@ footer{
   text-shadow:0 0 20px #b97cff, 0 0 40px #d4af37;
 }
 
-/* Instagram fijo en footer */
-.social-footer {
-  margin-top:15px;
-}
-.social-footer img {
-  width:45px;
-  height:45px;
-  filter:drop-shadow(0 0 6px #b97cff);
-  transition:transform 0.3s ease, filter 0.3s ease;
-}
-.social-footer img:hover {
-  transform:scale(1.1);
-  filter:drop-shadow(0 0 15px #d4af37);
-}
-
-/* --- BOTÓN WHATSAPP FLOTANTE --- */
+/* --- BOTÓN WHATSAPP FLOTANTE ORIGINAL --- */
 .btn-whatsapp {
   position:fixed;
   bottom:25px;
   right:25px;
   z-index:100;
-  width:60px;
-  height:60px;
+  width:65px;
+  height:65px;
   border-radius:50%;
+  background-color:#25D366;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:radial-gradient(circle, #25D366 0%, #128C7E 100%);
   box-shadow:0 0 20px rgba(0,0,0,0.6);
   transition:transform 0.3s ease, box-shadow 0.3s ease;
 }
 .btn-whatsapp img {
-  width:36px;
-  height:36px;
+  width:40px;
+  height:40px;
 }
 .btn-whatsapp:hover {
   transform:scale(1.1);
-  box-shadow:0 0 30px rgba(255,255,255,0.4);
+  box-shadow:0 0 25px rgba(255,255,255,0.5);
 }
 
 /* --- RESPONSIVO --- */
@@ -249,23 +251,10 @@ footer{
   .info p{max-height:70px;}
   header h1{font-size:1.3rem;}
   .swiper{width:95%;}
-  .btn-whatsapp{width:50px;height:50px;bottom:20px;right:20px;}
-  .btn-whatsapp img{width:28px;height:28px;}
-  .social-footer img{width:40px;height:40px;}
-}
-
-/* --- SOLO MOVILES: fondo fijo, alejado y leve filtro --- */
-@media (max-width: 768px) {
-  body {
-    background-attachment:fixed;
-    background-size:150% auto;
-    background-position:center -120px;
+  .btn-whatsapp{
+    width:55px;height:55px;
+    bottom:20px;right:20px;
   }
-  body::after {
-    content:"";
-    position:fixed;
-    top:0;left:0;width:100%;height:100%;
-    background:rgba(0,0,0,0.25);
-    z-index:-1;
-  }
+  .btn-whatsapp img{width:32px;height:32px;}
+  .instagram-section h2{font-size:1.2rem;}
 }
