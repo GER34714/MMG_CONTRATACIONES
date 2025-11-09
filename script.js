@@ -11,7 +11,7 @@ particlesJS('particles-js', {
   "retina_detect": true
 });
 
-// Crear carrusel
+// Cargar artistas
 async function cargarArtistas() {
   try {
     const res = await fetch('artistas.json');
@@ -19,50 +19,46 @@ async function cargarArtistas() {
     const contenedor = document.getElementById('artistas-container');
     contenedor.innerHTML = '';
 
-    const artistasLoop = [...artistas, ...artistas];
-    artistasLoop.forEach(a => {
-      const card = document.createElement('div');
-      card.classList.add('artista');
-      card.innerHTML = `
-        <img src="${a.img || 'https://iili.io/KtXqRHJ.md.png'}" alt="${a.nombre}">
-        <div class="info">
-          <h2>${a.nombre}</h2>
-          <p>${a.descripcion}</p>
+    artistas.forEach(a => {
+      const slide = document.createElement('div');
+      slide.classList.add('swiper-slide');
+      slide.innerHTML = `
+        <div class="artista">
+          <img src="${a.img || 'https://iili.io/KtXqRHJ.md.png'}" alt="${a.nombre}">
+          <div class="info">
+            <h2>${a.nombre}</h2>
+            <p>${a.descripcion}</p>
+          </div>
+          <button class="btn" onclick="contratar('${a.nombre}')">🎤 Contratar Artista</button>
         </div>
-        <button class="btn" onclick="contratar('${a.nombre}')">🎤 Contratar Artista</button>
       `;
-      contenedor.appendChild(card);
+      contenedor.appendChild(slide);
     });
 
-    // --- Movimiento automático en PC ---
-    if (!/Mobi|Android/i.test(navigator.userAgent)) {
-      let pos = 0;
-      setInterval(() => {
-        pos -= 0.6; // velocidad lenta
-        contenedor.style.transform = `translateX(${pos}px)`;
-        if (Math.abs(pos) > contenedor.scrollWidth / 2) pos = 0;
-      }, 30);
-    }
-
-    // --- Flechas de control ---
-    const btnIzq = document.querySelector('.flecha-izq');
-    const btnDer = document.querySelector('.flecha-der');
-
-    btnIzq.addEventListener('click', () => {
-      contenedor.scrollBy({ left: -350, behavior: 'smooth' });
-    });
-
-    btnDer.addEventListener('click', () => {
-      contenedor.scrollBy({ left: 350, behavior: 'smooth' });
-    });
-
-    // --- Swipe manual (para móviles y PC táctiles) ---
-    let startX = 0;
-    contenedor.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    contenedor.addEventListener('touchmove', e => {
-      let diff = startX - e.touches[0].clientX;
-      contenedor.scrollLeft += diff;
-      startX = e.touches[0].clientX;
+    // Inicializar Swiper
+    new Swiper('.swiper', {
+      loop: true,
+      slidesPerView: 3,
+      spaceBetween: 30,
+      centeredSlides: true,
+      grabCursor: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        320: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
     });
 
   } catch (err) {
