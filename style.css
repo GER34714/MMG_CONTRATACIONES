@@ -1,41 +1,174 @@
-/* --- Flechas visibles solo en escritorio --- */
-.swiper-button-prev,
-.swiper-button-next {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #000;
   color: #fff;
-  text-shadow: 0 0 10px #b97cff, 0 0 20px #d4af37;
-  filter: drop-shadow(0 0 8px #b97cff);
-  transition: all .3s ease;
-  top: 50%;
-  transform: translateY(-50%);
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  color: #d4af37;
-  transform: translateY(-50%) scale(1.15);
+#particles-js {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
 }
 
-/* 📱 Ocultar flechas en móviles */
-@media (max-width: 768px) {
-  .swiper-button-prev,
-  .swiper-button-next {
-    display: none !important;
-  }
+header {
+  text-align: center;
+  padding: 60px 20px 20px;
 }
 
-/* 💎 Centrado preciso de tarjetas */
-.artistas-wrapper {
+.logo {
+  width: 220px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #ffd700;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 15px #a020f0; }
+  to { box-shadow: 0 0 30px #00ffff; }
+}
+
+.titulo {
+  font-size: 2.5em;
+  color: #ffd700;
+  margin-top: 10px;
+  text-shadow: 0 0 10px #a020f0, 0 0 25px #00ffff;
+}
+
+.subtitulo {
+  font-size: 1.2em;
+  margin-top: 5px;
+  color: #ccc;
+}
+
+.contacto {
+  margin-top: 8px;
+  font-size: 1em;
+}
+.contacto a {
+  color: #00ffff;
+  text-decoration: none;
+}
+.contacto a:hover {
+  text-shadow: 0 0 10px #a020f0;
+}
+
+/* CARRUSEL */
+.carrusel {
+  position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
+  padding: 50px 0;
+  overflow: hidden;
 }
 
-.swiper {
-  width: 90%;
-  max-width: 1300px;
-  margin: auto;
+.contenedor-cards {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px;
 }
 
-.swiper-wrapper {
-  align-items: center;
+.contenedor-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px #a020f0, 0 0 20px #00ffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ffd700, 0 0 30px #00ffff;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  color: #ffd700;
+}
+
+.card p {
+  font-size: 0.9em;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #a020f0, #00ffff, #ffd700);
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 25px;
+  border-radius: 50px;
+  box-shadow: 0 0 10px #00ffff;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  box-shadow: 0 0 25px #ffd700;
+  transform: scale(1.08);
+}
+
+/* FLECHAS */
+.flecha {
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: #ffd700;
+  font-size: 2em;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+.flecha:hover {
+  background: rgba(255,255,255,0.2);
+  color: #00ffff;
+}
+.izquierda { position: absolute; left: 10px; }
+.derecha { position: absolute; right: 10px; }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .flecha {
+    display: none;
+  }
+  .card {
+    min-width: 250px;
+  }
+  .titulo {
+    font-size: 2em;
+  }
 }
