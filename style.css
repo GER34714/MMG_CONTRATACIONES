@@ -1,10 +1,14 @@
 *{margin:0;padding:0;box-sizing:border-box;}
+html, body {
+  height:100%;
+}
 body{
   font-family:'Poppins',sans-serif;
-  background:url("https://iili.io/KbTijol.jpg") no-repeat center top;
+  background:#000 url("https://iili.io/KbTijol.jpg") no-repeat center top fixed;
   background-size:cover;
   color:#fff;
   overflow-x:hidden;
+  min-height:100vh;
 }
 
 /* Fondo partículas */
@@ -183,13 +187,14 @@ footer{
   header h1{font-size:1.4rem;}
   .swiper{width:95%;}
 
-  /* 👇 Bajamos más la imagen de fondo solo en móviles */
+  /* 👇 bajamos más la imagen y evitamos fondo blanco */
   body {
-    background-position:center -280px; /* 🔥 ajustá este valor (-200, -300, etc.) según el efecto que busques */
+    background-position:center -300px;
+    background-attachment:scroll; /* permite que se mueva suavemente al hacer scroll */
   }
 }
 
-/* --- SOLO PC: mantener centrada la imagen --- */
+/* --- SOLO PC --- */
 @media (min-width: 1024px) {
   body {
     background-position:center top;
