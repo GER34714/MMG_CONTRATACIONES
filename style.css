@@ -163,7 +163,7 @@ header h1{
 /* --- SECCIÓN INSTAGRAM --- */
 .instagram-section {
   text-align:center;
-  margin:30px 0 20px;
+  margin:40px 0 30px;
 }
 .instagram-section h2 {
   font-size:1.4rem;
@@ -200,7 +200,7 @@ header h1{
 /* --- FOOTER --- */
 footer{
   text-align:center;
-  padding:30px 20px 30px;
+  padding:30px 20px 40px;
   color:#ccc;
   font-size:0.9rem;
   background:rgba(0,0,0,0.7);
@@ -218,10 +218,10 @@ footer{
   text-shadow:0 0 20px #b97cff, 0 0 40px #d4af37;
 }
 
-/* --- BOTÓN WHATSAPP FLOTANTE ORIGINAL --- */
+/* --- BOTÓN WHATSAPP FLOTANTE --- */
 .btn-whatsapp {
   position:fixed;
-  bottom:25px;
+  bottom:85px;
   right:25px;
   z-index:100;
   width:65px;
@@ -235,8 +235,8 @@ footer{
   transition:transform 0.3s ease, box-shadow 0.3s ease;
 }
 .btn-whatsapp img {
-  width:40px;
-  height:40px;
+  width:38px;
+  height:38px;
 }
 .btn-whatsapp:hover {
   transform:scale(1.1);
@@ -253,8 +253,11 @@ footer{
   .swiper{width:95%;}
   .btn-whatsapp{
     width:55px;height:55px;
-    bottom:20px;right:20px;
+    bottom:70px;right:20px;
   }
-  .btn-whatsapp img{width:32px;height:32px;}
+  .btn-whatsapp img{width:30px;height:30px;}
   .instagram-section h2{font-size:1.2rem;}
 }
+
+/* --- ELIMINAR PAGINACIÓN DEL CARRUSEL --- */
+.swiper-pagination { display:none !important; }
