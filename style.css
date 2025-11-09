@@ -7,6 +7,7 @@ body{
   overflow-x:hidden;
   min-height:100vh;
   position:relative;
+  padding-top:80px; /* 👇 desplaza todo el contenido un poco más abajo */
 }
 
 /* Fondo partículas */
@@ -25,7 +26,7 @@ header{
 }
 
 header img{
-  width:200px; /* más chico */
+  width:200px;
   border-radius:25px;
   animation:glowLogo 3.5s infinite ease-in-out;
   filter:drop-shadow(0 0 30px #b97cff) drop-shadow(0 0 40px #d4af37);
@@ -38,7 +39,7 @@ header img{
 }
 
 header h1{
-  font-size:1.6rem; /* reducido de 1.9rem a 1.6rem */
+  font-size:1.6rem;
   margin-top:15px;
   text-shadow:0 0 30px #b97cff,0 0 50px #d4af37;
 }
@@ -47,7 +48,7 @@ header h1{
 .artistas-wrapper{
   width:100%;
   position:relative;
-  padding:40px 0;
+  padding:60px 0; /* 👈 más espacio arriba */
 }
 
 .swiper{
@@ -172,17 +173,18 @@ header h1{
 /* --- FOOTER --- */
 footer{
   text-align:center;
-  padding:20px;
+  padding:40px 20px 20px; /* 👈 bajado también */
   color:#ccc;
   font-size:0.9rem;
 }
 
 /* --- RESPONSIVO --- */
 @media(max-width:768px){
+  body { padding-top:60px; } /* menos margen arriba en móvil */
   .artista{width:85%;height:460px;}
   .artista img{height:200px;}
   .info p{max-height:70px;}
-  header h1{font-size:1.3rem;} /* más chico también en móviles */
+  header h1{font-size:1.3rem;}
   .swiper{width:95%;}
 }
 
