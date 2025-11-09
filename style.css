@@ -1,137 +1,222 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MMG™ | Representante de Artistas</title>
+*{margin:0;padding:0;box-sizing:border-box;}
+html, body {
+  width:100%;
+  height:100%;
+  background-color:#000;
+  overflow-x:hidden;
+}
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://iili.io/KtXqRHJ.md.png" />
-  <meta name="theme-color" content="#b97cff">
+body{
+  font-family:'Poppins',sans-serif;
+  background-image:url("https://iili.io/KbTijol.jpg");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:cover;
+  background-attachment:fixed;
+  min-height:100dvh;
+  color:#fff;
+  text-align:center; /* ✅ centra textos base */
+}
 
-  <!-- Estilos -->
-  <link rel="stylesheet" href="style.css">
+/* Fondo partículas */
+#particles-js{
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  z-index:-1;
+}
 
-  <!-- SwiperJS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-</head>
+/* HEADER */
+header{
+  text-align:center;
+  padding:60px 20px 20px;
+  position:relative;
+  z-index:10;
+}
 
-<body>
-  <!-- Fondo partículas -->
-  <div id="particles-js"></div>
+header img{
+  width:250px;
+  border-radius:25px;
+  animation:glowLogo 3.5s infinite ease-in-out;
+  filter:drop-shadow(0 0 30px #b97cff) drop-shadow(0 0 40px #d4af37);
+}
 
-  <!-- HEADER -->
-  <header>
-    <img src="https://iili.io/KtXqRHJ.md.png" alt="MMG Logo">
+@keyframes glowLogo{
+  0%{filter:drop-shadow(0 0 15px #b97cff);}
+  50%{filter:drop-shadow(0 0 40px #d4af37);}
+  100%{filter:drop-shadow(0 0 15px #00ffff);}
+}
 
-    <h1>🎤 ¡Llená tu evento de ritmo y energía!</h1>
-    <p style="font-size:1.1rem;margin-top:15px;max-width:700px;margin:auto;text-shadow:0 0 15px #000;">
-      Shows, festivales, boliches o eventos privados — nosotros nos encargamos de llevarte la mejor música en vivo. <br>
-      Contratá artistas con experiencia, profesionalismo y presencia escénica garantizada. <br>
-      <strong>MMG™ | Representante de Artistas. Tu contacto directo con el show.</strong>
-    </p>
+header h1{
+  font-size:1.9rem;
+  margin-top:18px;
+  color:#fffbea; /* ✅ blanco cálido */
+  text-shadow:0 0 10px #000,0 0 25px #b97cff,0 0 35px #000;
+}
 
-    <button class="btn" onclick="window.open('https://wa.me/5491157343551?text=Hola%20👋%20quiero%20contratar%20un%20artista%20para%20mi%20evento','_blank')">
-      🎶 Pedí tu cotización ahora
-    </button>
-  </header>
+header p{
+  color:#fffde9; /* ✅ texto visible */
+  text-shadow:0 0 8px #000,0 0 25px rgba(0,0,0,0.7);
+  line-height:1.6em;
+}
 
-  <!-- CARRUSEL ROCKOLA -->
-  <section class="artistas-wrapper">
-    <div class="swiper">
-      <div class="swiper-wrapper" id="artistas-container"></div>
+/* --- CARRUSEL ROCKOLA --- */
+.artistas-wrapper{
+  width:100%;
+  position:relative;
+  padding:40px 0;
+  display:flex;
+  justify-content:center; /* ✅ centra horizontalmente */
+}
 
-      <!-- Flechas -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </div>
-  </section>
+.swiper{
+  width:90%;
+  margin:auto;
+  padding-bottom:60px;
+}
 
-  <!-- FOOTER -->
-  <footer>
-    © 2025 MMG Manager Music Group™ · 
-    <a href="https://ciborg347.onrender.com" target="_blank" style="color:#b97cff;text-decoration:none;font-weight:600;">
-      Creado y diseñado por Ciborg347™
-    </a>
-  </footer>
+.swiper-wrapper{
+  display:flex;
+  justify-content:center; /* ✅ centra las tarjetas dentro del carrusel */
+}
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+.swiper-slide{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeInSlide 1s ease forwards;
+}
+.swiper-slide:nth-child(odd){animation-delay:.2s;}
+.swiper-slide:nth-child(even){animation-delay:.4s;}
 
-  <script>
-  // Fondo de partículas
-  particlesJS('particles-js', {
-    "particles": {
-      "number": { "value": 70 },
-      "color": { "value": ["#d4af37", "#b97cff"] },
-      "opacity": { "value": 0.5, "random": true },
-      "size": { "value": 3, "random": true },
-      "move": { "enable": true, "speed": 1.5 },
-      "line_linked": { "enable": false }
-    },
-    "retina_detect": true
-  });
-
-  // Cargar artistas
-  async function cargarArtistas() {
-    try {
-      const res = await fetch('artistas.json');
-      const artistas = await res.json();
-
-      const contenedor = document.getElementById('artistas-container');
-      contenedor.innerHTML = '';
-
-      artistas.forEach(a => {
-        const slide = document.createElement('div');
-        slide.classList.add('swiper-slide');
-        slide.innerHTML = `
-          <div class="artista">
-            <img src="${a.img || 'https://iili.io/KtXqRHJ.md.png'}" alt="${a.nombre}">
-            <div class="info">
-              <h2>${a.nombre}</h2>
-              <p>${a.descripcion}</p>
-            </div>
-            <button class="btn" onclick="contratar('${a.nombre}')">🎤 Contratar Artista</button>
-          </div>
-        `;
-        contenedor.appendChild(slide);
-      });
-
-      // 🌀 Swiper centrado + autoplay lento
-      new Swiper('.swiper', {
-        slidesPerView: 1,
-        spaceBetween: 25,
-        centeredSlides: true,
-        loop: true,
-        grabCursor: true,
-        autoplay: {
-          delay: 8000, // ⏱️ 8 segundos entre artistas
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-        breakpoints: {
-          768: { slidesPerView: 2, centeredSlides: true },
-          1024: { slidesPerView: 3, centeredSlides: true }
-        }
-      });
-
-    } catch (err) {
-      console.error('Error al cargar artistas:', err);
-    }
+@keyframes fadeInSlide{
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
+}
 
-  // WhatsApp contacto
-  function contratar(nombre){
-    const numero = "5491157343551";
-    const mensaje = encodeURIComponent(`Hola 👋, quiero contratar a ${nombre} (MMG | Representante de Artistas).`);
-    window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank');
-  }
+/* --- TARJETAS --- */
+.artista{
+  width:320px;
+  background:rgba(40,40,60,0.8);
+  border-radius:18px;
+  box-shadow:0 0 25px rgba(185,124,255,0.5);
+  overflow:hidden;
+  text-align:center;
+  backdrop-filter:blur(6px);
+  transition:transform .3s;
+  display:flex;
+  flex-direction:column;
+  height:500px;
+  margin:auto; /* ✅ centra la tarjeta */
+}
+.artista:hover{transform:scale(1.05);}
 
-  document.addEventListener('DOMContentLoaded', cargarArtistas);
-  </script>
-</body>
-</html>
+.artista img{
+  width:100%;
+  height:240px;
+  object-fit:contain;
+  background:#000;
+  border-bottom:3px solid #b97cff;
+  transition:all .4s ease;
+}
+.artista img:hover{filter:brightness(1.1);}
+
+/* --- INFO --- */
+.info{
+  padding:20px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+}
+.info h2{
+  font-size:1.3rem;
+  margin-bottom:8px;
+  color:#fffbea;
+  text-shadow:0 0 10px #000,0 0 10px #b97cff;
+}
+.info p{
+  font-size:0.95rem;
+  color:#f9f9f9;
+  line-height:1.4em;
+  text-align:center;
+  margin-bottom:auto;
+  max-height:85px;
+  overflow:hidden;
+  text-shadow:0 0 8px #000;
+}
+
+/* --- BOTÓN CONTRATAR --- */
+.btn{
+  background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
+  background-size:300% 300%;
+  color:#000;
+  border:none;
+  padding:12px 28px;
+  border-radius:35px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(212,175,55,0.7);
+  text-shadow:0 0 8px rgba(255,255,255,0.5);
+  animation:glowBtn 3s infinite alternate;
+  margin:20px auto 25px auto;
+  display:block;
+  align-self:center;
+}
+@keyframes glowBtn{
+  0%{box-shadow:0 0 20px #b97cff,0 0 30px #d4af37;}
+  100%{box-shadow:0 0 40px #ffcc70,0 0 60px #b97cff;}
+}
+.btn:hover{
+  transform:scale(1.1);
+  background-position:right center;
+}
+
+/* --- FLECHAS --- */
+.swiper-button-prev,
+.swiper-button-next{
+  color:#fff;
+  text-shadow:0 0 10px #b97cff,0 0 20px #d4af37;
+  filter:drop-shadow(0 0 8px #b97cff);
+  transition:all .3s ease;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover{
+  color:#d4af37;
+  transform:scale(1.1);
+}
+
+/* ❌ eliminamos los puntos */
+.swiper-pagination{
+  display:none !important;
+}
+
+/* --- FOOTER --- */
+footer{
+  text-align:center;
+  padding:20px;
+  color:#ccc;
+  font-size:0.9rem;
+}
+footer a{
+  color:#b97cff;
+  text-decoration:none;
+  font-weight:600;
+}
+footer a:hover{
+  color:#ffcc70;
+  text-shadow:0 0 10px #b97cff;
+}
+
+/* --- RESPONSIVO --- */
+@media(max-width:768px){
+  .artista{width:85%;height:460px;}
+  .artista img{height:200px;}
+  .info p{max-height:70px;}
+  header h1{font-size:1.4rem;}
+  .swiper{width:95%;}
+}
