@@ -11,7 +11,7 @@ particlesJS('particles-js', {
   "retina_detect": true
 });
 
-// Crear carrusel infinito duplicando artistas
+// Crear carrusel con control por dispositivo
 async function cargarArtistas() {
   try {
     const res = await fetch('artistas.json');
@@ -20,7 +20,6 @@ async function cargarArtistas() {
     const contenedor = document.getElementById('artistas-container');
     contenedor.innerHTML = '';
 
-    // Duplicar lista para loop continuo
     const artistasLoop = [...artistas, ...artistas];
 
     artistasLoop.forEach(a => {
@@ -36,6 +35,24 @@ async function cargarArtistas() {
       `;
       contenedor.appendChild(card);
     });
+
+    // 💻 En PC: movimiento automático lento
+    if (!/Mobi|Android/i.test(navigator.userAgent)) {
+      let pos = 0;
+      setInterval(() => {
+        pos -= 0.6; // velocidad lenta
+        contenedor.style.transform = `translateX(${pos}px)`;
+        if (Math.abs(pos) > contenedor.scrollWidth / 2) pos = 0;
+      }, 30);
+    }
+    // 📱 En móviles: movimiento manual con swipe
+    else {
+      contenedor.style.overflowX = "auto";
+      contenedor.style.scrollSnapType = "x mandatory";
+      document.querySelectorAll(".artista").forEach(card => {
+        card.style.scrollSnapAlign = "center";
+      });
+    }
 
   } catch (err) {
     console.error('Error al cargar artistas:', err);
