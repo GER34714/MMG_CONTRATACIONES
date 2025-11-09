@@ -22,7 +22,7 @@ header{
   z-index:10;
 }
 
-/* Capa negra solo detrás del logo */
+/* Fondo negro solo detrás del logo */
 header::before{
   content:"";
   position:absolute;
@@ -194,4 +194,11 @@ footer{
   .info p{max-height:70px;}
   header h1{font-size:1.4rem;}
   .swiper{width:95%;}
+}
+
+/* --- SOLO PC: bajar un poco la imagen de fondo --- */
+@media (min-width: 1024px) {
+  body {
+    background-position: center -250px; /* 👈 ajustá este valor si querés bajarla más o menos */
+  }
 }
