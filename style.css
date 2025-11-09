@@ -25,7 +25,7 @@ header{
 }
 
 header img{
-  width:250px;
+  width:200px; /* más chico */
   border-radius:25px;
   animation:glowLogo 3.5s infinite ease-in-out;
   filter:drop-shadow(0 0 30px #b97cff) drop-shadow(0 0 40px #d4af37);
@@ -38,9 +38,9 @@ header img{
 }
 
 header h1{
-  font-size:1.9rem;
-  margin-top:18px;
-  text-shadow:0 0 35px #b97cff,0 0 60px #d4af37;
+  font-size:1.6rem; /* reducido de 1.9rem a 1.6rem */
+  margin-top:15px;
+  text-shadow:0 0 30px #b97cff,0 0 50px #d4af37;
 }
 
 /* --- CARRUSEL ROCKOLA --- */
@@ -182,7 +182,7 @@ footer{
   .artista{width:85%;height:460px;}
   .artista img{height:200px;}
   .info p{max-height:70px;}
-  header h1{font-size:1.4rem;}
+  header h1{font-size:1.3rem;} /* más chico también en móviles */
   .swiper{width:95%;}
 }
 
@@ -199,16 +199,15 @@ footer{
 @media (max-width: 768px) {
   body {
     background-attachment:fixed;
-    background-size:150% auto; /* aleja la imagen */
+    background-size:150% auto;
     background-position:center -120px;
   }
 
-  /* capa de oscurecimiento sutil */
   body::after {
     content:"";
     position:fixed;
     top:0;left:0;width:100%;height:100%;
-    background:rgba(0,0,0,0.25); /* leve filtro oscuro */
+    background:rgba(0,0,0,0.25);
     z-index:-1;
   }
 }
