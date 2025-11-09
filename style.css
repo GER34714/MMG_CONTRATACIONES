@@ -2,7 +2,9 @@
 body{
   font-family:'Poppins',sans-serif;
   background:#000 url("https://iili.io/KbTijol.jpg") no-repeat center top;
-  background-size:cover;
+  background-size:contain; /* 👈 muestra toda la imagen sin pixelarse */
+  background-attachment:fixed; /* mantiene posición al scrollear */
+  background-color:#000; /* relleno en zonas vacías */
   color:#fff;
   overflow-x:hidden;
 }
@@ -22,7 +24,7 @@ header{
   z-index:10;
 }
 
-/* Capa negra solo detrás del logo */
+/* Fondo negro solo detrás del logo */
 header::before{
   content:"";
   position:absolute;
