@@ -5,40 +5,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MMG™ | Representante de Artistas</title>
 
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://iili.io/KtXqRHJ.md.png" />
   <meta name="theme-color" content="#b97cff">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- SwiperJS (para el carrusel) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
+
 <body>
+  <!-- Fondo de partículas -->
   <div id="particles-js"></div>
 
+  <!-- HEADER -->
   <header>
     <img src="https://iili.io/KtXqRHJ.md.png" alt="MMG Logo">
-    <h1>MMG™ | Contrataciones Oficiales de la Movida Tropical</h1>
+
+    <h1>🎤 ¡Llená tu evento de ritmo y energía!</h1>
+    <p style="font-size:1.1rem;margin-top:15px;max-width:700px;margin:auto;text-shadow:0 0 15px #000;">
+      Shows, festivales, boliches o eventos privados — nosotros nos encargamos de llevarte la mejor música en vivo. <br>
+      Contratá artistas con experiencia, profesionalismo y presencia escénica garantizada. <br>
+      <strong>MMG™ | Representante de Artistas. Tu contacto directo con el show.</strong>
+    </p>
+
+    <button class="btn" onclick="window.open('https://wa.me/5491157343551?text=Hola%20👋%20quiero%20contratar%20un%20artista%20para%20mi%20evento','_blank')">
+      🎶 Pedí tu cotización ahora
+    </button>
   </header>
 
-  <!-- Carrusel Rockola -->
+  <!-- CARRUSEL ROCKOLA -->
   <section class="artistas-wrapper">
     <div class="swiper">
       <div class="swiper-wrapper" id="artistas-container"></div>
 
-      <!-- Botones -->
+      <!-- Flechas -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
 
-      <!-- Paginación -->
+      <!-- Paginación (oculta por CSS) -->
       <div class="swiper-pagination"></div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    © 2025 MMG Manager Music Group™ · Powered by Ciborg347™
+    © 2025 MMG Manager Music Group™ · 
+    <a href="https://ciborg347.onrender.com" target="_blank" style="color:#b97cff;text-decoration:none;font-weight:600;">
+      Creado y diseñado por Ciborg347™
+    </a>
   </footer>
 
-  <!-- Scripts -->
+  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="script.js"></script>
+
+  <script>
+  // Fondo de partículas
+  particlesJS('particles-js', {
+    "particles": {
+      "number": { "value": 70 },
+      "color": { "value": ["#d4af37", "#b97cff"] },
+      "opacity": { "value": 0.5, "random": true },
+      "size": { "value": 3, "random": true },
+      "move": { "enable": true, "speed": 1.5 },
+      "line_linked": { "enable": false }
+    },
+    "retina_detect": true
+  });
+
+  // Cargar artistas
+  async function cargarArtistas() {
+    try {
+      const res = await fetch('artistas.json');
+      const artistas = await res.json();
+
+      const contenedor = document.getElementById('artistas-container');
+      contenedor.innerHTML = '';
+
+      artistas.forEach(a => {
+        const slide = document.createElement('div');
+        slide.classList.add('swiper-slide');
+        slide.innerHTML = `
+          <div class="artista">
+            <img src="${a.img || 'https://iili.io/KtXqRHJ.md.png'}" alt="${a.nombre}">
+            <div class="info">
+              <h2>${a.nombre}</h2>
+              <p>${a.descripcion}</p>
+            </div>
+            <button class="btn" onclick="contratar('${a.nombre}')">🎤 Contratar Artista</button>
+          </div>
+        `;
+        contenedor.appendChild(slide);
+      });
+
+      // Iniciar Swiper
+      new Swiper('.swiper', {
+        slidesPerView: 1,
+        spaceBetween: 25,
+        grabCursor: true,
+        loop: true,
+        autoplay: {
+          delay: 4500,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 }
+        }
+      });
+
+    } catch (err) {
+      console.error('Error al cargar artistas:', err);
+    }
+  }
+
+  // WhatsApp contacto
+  function contratar(nombre){
+    const numero = "5491157343551";
+    const mensaje = encodeURIComponent(`Hola 👋, quiero contratar a ${nombre} (MMG | Representante de Artistas).`);
+    window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank');
+  }
+
+  document.addEventListener('DOMContentLoaded', cargarArtistas);
+  </script>
 </body>
 </html>
