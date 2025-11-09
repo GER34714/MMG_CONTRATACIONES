@@ -2,20 +2,21 @@
 html, body {
   width:100%;
   height:100%;
-  background-color:#000;
   overflow-x:hidden;
 }
 
+/* 🖼 Fondo con overlay */
 body{
   font-family:'Poppins',sans-serif;
-  background-image:url("https://iili.io/KbTijol.jpg");
-  background-repeat:no-repeat;
-  background-position:center center;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), /* capa oscura encima */
+    url("https://iili.io/KbTijol.jpg") no-repeat center center fixed;
   background-size:cover;
-  background-attachment:fixed;
   min-height:100dvh;
   color:#fff;
-  text-align:center; /* ✅ centra textos base */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 /* Fondo partículas */
@@ -31,10 +32,11 @@ header{
   padding:60px 20px 20px;
   position:relative;
   z-index:10;
+  max-width:900px;
 }
 
 header img{
-  width:250px;
+  width:260px;
   border-radius:25px;
   animation:glowLogo 3.5s infinite ease-in-out;
   filter:drop-shadow(0 0 30px #b97cff) drop-shadow(0 0 40px #d4af37);
@@ -47,62 +49,48 @@ header img{
 }
 
 header h1{
-  font-size:1.9rem;
-  margin-top:18px;
-  color:#fffbea; /* ✅ blanco cálido */
-  text-shadow:0 0 10px #000,0 0 25px #b97cff,0 0 35px #000;
+  font-size:2rem;
+  margin-top:20px;
+  color:#fff;
+  text-shadow:0 0 6px #000, 0 0 12px #000, 0 0 30px #b97cff;
 }
 
 header p{
-  color:#fffde9; /* ✅ texto visible */
-  text-shadow:0 0 8px #000,0 0 25px rgba(0,0,0,0.7);
+  font-size:1.05rem;
+  color:#f5f5f5;
   line-height:1.6em;
+  margin-top:10px;
+  text-shadow:0 0 6px #000,0 0 12px #000;
 }
 
 /* --- CARRUSEL ROCKOLA --- */
 .artistas-wrapper{
   width:100%;
-  position:relative;
-  padding:40px 0;
   display:flex;
-  justify-content:center; /* ✅ centra horizontalmente */
+  justify-content:center; /* ✅ centrado real */
+  align-items:center;
+  padding:50px 0;
 }
 
 .swiper{
   width:90%;
+  max-width:1300px;
   margin:auto;
   padding-bottom:60px;
 }
 
 .swiper-wrapper{
   display:flex;
-  justify-content:center; /* ✅ centra las tarjetas dentro del carrusel */
-}
-
-.swiper-slide{
-  display:flex;
   justify-content:center;
   align-items:center;
-  opacity:0;
-  transform:translateY(30px);
-  animation:fadeInSlide 1s ease forwards;
-}
-.swiper-slide:nth-child(odd){animation-delay:.2s;}
-.swiper-slide:nth-child(even){animation-delay:.4s;}
-
-@keyframes fadeInSlide{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
 }
 
-/* --- TARJETAS --- */
+/* Tarjetas */
 .artista{
-  width:320px;
-  background:rgba(40,40,60,0.8);
+  width:330px;
+  background:rgba(25,25,45,0.85);
   border-radius:18px;
-  box-shadow:0 0 25px rgba(185,124,255,0.5);
+  box-shadow:0 0 25px rgba(185,124,255,0.4);
   overflow:hidden;
   text-align:center;
   backdrop-filter:blur(6px);
@@ -110,21 +98,19 @@ header p{
   display:flex;
   flex-direction:column;
   height:500px;
-  margin:auto; /* ✅ centra la tarjeta */
+  margin:auto;
 }
 .artista:hover{transform:scale(1.05);}
 
 .artista img{
   width:100%;
   height:240px;
-  object-fit:contain;
-  background:#000;
+  object-fit:cover;
   border-bottom:3px solid #b97cff;
   transition:all .4s ease;
 }
 .artista img:hover{filter:brightness(1.1);}
 
-/* --- INFO --- */
 .info{
   padding:20px;
   flex:1;
@@ -135,22 +121,22 @@ header p{
 }
 .info h2{
   font-size:1.3rem;
-  margin-bottom:8px;
-  color:#fffbea;
-  text-shadow:0 0 10px #000,0 0 10px #b97cff;
+  color:#fff;
+  text-shadow:0 0 6px #000,0 0 10px #b97cff;
+  margin-bottom:10px;
 }
 .info p{
   font-size:0.95rem;
-  color:#f9f9f9;
-  line-height:1.4em;
+  color:#f1f1f1;
   text-align:center;
+  line-height:1.5em;
+  text-shadow:0 0 6px #000,0 0 10px rgba(0,0,0,0.7);
   margin-bottom:auto;
   max-height:85px;
   overflow:hidden;
-  text-shadow:0 0 8px #000;
 }
 
-/* --- BOTÓN CONTRATAR --- */
+/* Botón */
 .btn{
   background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
   background-size:300% 300%;
@@ -165,7 +151,6 @@ header p{
   animation:glowBtn 3s infinite alternate;
   margin:20px auto 25px auto;
   display:block;
-  align-self:center;
 }
 @keyframes glowBtn{
   0%{box-shadow:0 0 20px #b97cff,0 0 30px #d4af37;}
@@ -176,7 +161,7 @@ header p{
   background-position:right center;
 }
 
-/* --- FLECHAS --- */
+/* Flechas */
 .swiper-button-prev,
 .swiper-button-next{
   color:#fff;
@@ -190,12 +175,12 @@ header p{
   transform:scale(1.1);
 }
 
-/* ❌ eliminamos los puntos */
+/* Sin puntos */
 .swiper-pagination{
   display:none !important;
 }
 
-/* --- FOOTER --- */
+/* Footer */
 footer{
   text-align:center;
   padding:20px;
@@ -212,11 +197,12 @@ footer a:hover{
   text-shadow:0 0 10px #b97cff;
 }
 
-/* --- RESPONSIVO --- */
+/* Responsivo */
 @media(max-width:768px){
+  header img{width:220px;}
+  header h1{font-size:1.6rem;}
   .artista{width:85%;height:460px;}
   .artista img{height:200px;}
   .info p{max-height:70px;}
-  header h1{font-size:1.4rem;}
   .swiper{width:95%;}
 }
