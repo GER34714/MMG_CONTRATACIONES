@@ -38,12 +38,7 @@ header h1{
   display:flex;
   gap:25px;
   width:max-content;
-  animation:rockola 45s linear infinite;
-}
-
-@keyframes rockola{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
+  transition: transform 1s linear;
 }
 
 /* --- TARJETAS --- */
@@ -56,13 +51,15 @@ header h1{
   text-align:center;
   backdrop-filter:blur(6px);
   transition:transform .3s;
+  flex-shrink: 0;
 }
 .artista:hover{transform:scale(1.08);}
 
 .artista img{
   width:100%;
   height:280px;
-  object-fit:cover;
+  object-fit:contain; /* 👈 imagen completa */
+  background:#000;
   border:4px solid transparent;
   border-image:linear-gradient(45deg,#d4af37,#b97cff);
   border-image-slice:1;
