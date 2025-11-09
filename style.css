@@ -1,15 +1,20 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html, body {
+  width:100%;
   height:100%;
+  background-color:#000; /* backup negro por si tarda en cargar */
+  overflow-x:hidden;
 }
+
 body{
   font-family:'Poppins',sans-serif;
-  background:url("https://iili.io/KbTijol.jpg") no-repeat center center;
-  background-size:cover;          /* ✅ ocupa toda la pantalla */
-  background-attachment:scroll;   /* evita saltos o recortes en móviles */
+  background-image:url("https://iili.io/KbTijol.jpg");
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:cover;
+  background-attachment:fixed;
+  min-height:100dvh; /* ✅ altura real dinámica, sin blanco abajo */
   color:#fff;
-  overflow-x:hidden;
-  min-height:100vh;
 }
 
 /* Fondo partículas */
@@ -188,18 +193,11 @@ footer{
   header h1{font-size:1.4rem;}
   .swiper{width:95%;}
 
-  /* ✅ Fondo 100% pantalla también en móviles */
-  body {
-    background-position:center center;
-    background-size:cover;
+  /* 👇 Ajuste móvil para cubrir pantalla completa */
+  body{
     background-attachment:scroll;
-  }
-}
-
-/* --- SOLO PC --- */
-@media (min-width: 1024px) {
-  body {
-    background-position:center center;
     background-size:cover;
+    background-position:center center;
+    min-height:100dvh;
   }
 }
