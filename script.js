@@ -1,4 +1,3 @@
-// Fondo de partículas
 particlesJS('particles-js', {
   "particles": {
     "number": { "value": 70 },
@@ -11,7 +10,6 @@ particlesJS('particles-js', {
   "retina_detect": true
 });
 
-// Cargar artistas
 async function cargarArtistas() {
   try {
     const res = await fetch('artistas.json');
@@ -35,30 +33,16 @@ async function cargarArtistas() {
       contenedor.appendChild(slide);
     });
 
-    // Inicializar Swiper
     new Swiper('.swiper', {
       loop: true,
       slidesPerView: 3,
       spaceBetween: 30,
       centeredSlides: true,
       grabCursor: true,
-      autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        320: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 }
-      }
+      autoplay: { delay: 2500, disableOnInteraction: false },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      pagination: { el: '.swiper-pagination', clickable: true },
+      breakpoints: { 320: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
     });
 
   } catch (err) {
@@ -66,7 +50,6 @@ async function cargarArtistas() {
   }
 }
 
-// WhatsApp
 function contratar(nombre){
   const numero = "5491157343551";
   const mensaje = encodeURIComponent(`Hola 👋, quiero contratar a ${nombre} (MMG | Representante de Artistas).`);
