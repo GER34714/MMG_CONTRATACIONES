@@ -49,6 +49,18 @@ header h1{
   display:flex;
   justify-content:center;
   align-items:center;
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeInSlide 1s ease forwards;
+}
+.swiper-slide:nth-child(odd){animation-delay:.2s;}
+.swiper-slide:nth-child(even){animation-delay:.4s;}
+
+@keyframes fadeInSlide{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 /* --- TARJETAS --- */
@@ -61,12 +73,15 @@ header h1{
   text-align:center;
   backdrop-filter:blur(6px);
   transition:transform .3s;
+  display:flex;
+  flex-direction:column;
+  height:500px; /* 👈 altura uniforme */
 }
 .artista:hover{transform:scale(1.05);}
 
 .artista img{
   width:100%;
-  height:260px;
+  height:240px;
   object-fit:contain;
   background:#000;
   border-bottom:3px solid #b97cff;
@@ -74,20 +89,31 @@ header h1{
 }
 .artista img:hover{filter:brightness(1.1);}
 
-.info{padding:20px;}
+/* --- INFO --- */
+.info{
+  padding:20px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+}
 .info h2{
   font-size:1.3rem;
-  margin-bottom:10px;
+  margin-bottom:8px;
   text-shadow:0 0 10px #b97cff;
 }
 .info p{
   font-size:0.95rem;
   color:#eee;
-  line-height:1.5em;
-  margin-bottom:20px;
+  line-height:1.4em;
+  text-align:center;
+  margin-bottom:auto;
+  max-height:85px; /* 👈 controla el texto */
+  overflow:hidden;
 }
 
-/* --- BOTÓN CONTRATAR --- */
+/* --- BOTÓN CONTRATAR (ALINEADO) --- */
 .btn{
   background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
   background-size:300% 300%;
@@ -100,7 +126,9 @@ header h1{
   box-shadow:0 0 25px rgba(212,175,55,0.7);
   text-shadow:0 0 8px rgba(255,255,255,0.5);
   animation:glowBtn 3s infinite alternate;
-  margin-bottom:20px;
+  margin:20px auto 25px auto;
+  display:block;
+  align-self:center;
 }
 @keyframes glowBtn{
   0%{box-shadow:0 0 20px #b97cff,0 0 30px #d4af37;}
@@ -111,26 +139,38 @@ header h1{
   background-position:right center;
 }
 
-/* --- FLECHAS Y PAGINACIÓN --- */
+/* --- FLECHAS --- */
 .swiper-button-prev,
 .swiper-button-next{
   color:#fff;
   text-shadow:0 0 10px #b97cff,0 0 20px #d4af37;
   filter:drop-shadow(0 0 8px #b97cff);
+  transition:all .3s ease;
 }
 .swiper-button-prev:hover,
 .swiper-button-next:hover{
   color:#d4af37;
   transform:scale(1.1);
 }
-.swiper-pagination-bullet{
-  background:#b97cff;
-  opacity:0.7;
-}
-.swiper-pagination-bullet-active{
-  background:#d4af37;
-  opacity:1;
+
+/* ❌ eliminamos los puntos */
+.swiper-pagination{
+  display:none !important;
 }
 
 /* --- FOOTER --- */
-footer{text-align:center;padding:20px;color:#ccc;font-size:0.9rem;}
+footer{
+  text-align:center;
+  padding:20px;
+  color:#ccc;
+  font-size:0.9rem;
+}
+
+/* --- RESPONSIVO --- */
+@media(max-width:768px){
+  .artista{width:85%;height:460px;}
+  .artista img{height:200px;}
+  .info p{max-height:70px;}
+  header h1{font-size:1.4rem;}
+  .swiper{width:95%;}
+}
