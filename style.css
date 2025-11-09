@@ -2,7 +2,7 @@
 html, body {
   width:100%;
   height:100%;
-  background-color:#000; /* backup negro por si tarda en cargar */
+  background-color:#000;
   overflow-x:hidden;
 }
 
@@ -13,8 +13,9 @@ body{
   background-position:center center;
   background-size:cover;
   background-attachment:fixed;
-  min-height:100dvh; /* ✅ altura real dinámica, sin blanco abajo */
+  min-height:100dvh;
   color:#fff;
+  text-align:center; /* ✅ centra textos base */
 }
 
 /* Fondo partículas */
@@ -48,7 +49,14 @@ header img{
 header h1{
   font-size:1.9rem;
   margin-top:18px;
-  text-shadow:0 0 35px #b97cff,0 0 60px #d4af37;
+  color:#fffbea; /* ✅ blanco cálido */
+  text-shadow:0 0 10px #000,0 0 25px #b97cff,0 0 35px #000;
+}
+
+header p{
+  color:#fffde9; /* ✅ texto visible */
+  text-shadow:0 0 8px #000,0 0 25px rgba(0,0,0,0.7);
+  line-height:1.6em;
 }
 
 /* --- CARRUSEL ROCKOLA --- */
@@ -56,12 +64,19 @@ header h1{
   width:100%;
   position:relative;
   padding:40px 0;
+  display:flex;
+  justify-content:center; /* ✅ centra horizontalmente */
 }
 
 .swiper{
   width:90%;
   margin:auto;
   padding-bottom:60px;
+}
+
+.swiper-wrapper{
+  display:flex;
+  justify-content:center; /* ✅ centra las tarjetas dentro del carrusel */
 }
 
 .swiper-slide{
@@ -95,6 +110,7 @@ header h1{
   display:flex;
   flex-direction:column;
   height:500px;
+  margin:auto; /* ✅ centra la tarjeta */
 }
 .artista:hover{transform:scale(1.05);}
 
@@ -120,16 +136,18 @@ header h1{
 .info h2{
   font-size:1.3rem;
   margin-bottom:8px;
-  text-shadow:0 0 10px #b97cff;
+  color:#fffbea;
+  text-shadow:0 0 10px #000,0 0 10px #b97cff;
 }
 .info p{
   font-size:0.95rem;
-  color:#eee;
+  color:#f9f9f9;
   line-height:1.4em;
   text-align:center;
   margin-bottom:auto;
   max-height:85px;
   overflow:hidden;
+  text-shadow:0 0 8px #000;
 }
 
 /* --- BOTÓN CONTRATAR --- */
@@ -184,6 +202,15 @@ footer{
   color:#ccc;
   font-size:0.9rem;
 }
+footer a{
+  color:#b97cff;
+  text-decoration:none;
+  font-weight:600;
+}
+footer a:hover{
+  color:#ffcc70;
+  text-shadow:0 0 10px #b97cff;
+}
 
 /* --- RESPONSIVO --- */
 @media(max-width:768px){
@@ -192,12 +219,4 @@ footer{
   .info p{max-height:70px;}
   header h1{font-size:1.4rem;}
   .swiper{width:95%;}
-
-  /* 👇 Ajuste móvil para cubrir pantalla completa */
-  body{
-    background-attachment:scroll;
-    background-size:cover;
-    background-position:center center;
-    min-height:100dvh;
-  }
 }
