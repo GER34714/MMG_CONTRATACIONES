@@ -1,10 +1,8 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'Poppins',sans-serif;
-  background:#000 url("https://iili.io/KbTijol.jpg") no-repeat center top;
-  background-size:contain; /* 👈 muestra toda la imagen sin pixelarse */
-  background-attachment:fixed; /* mantiene posición al scrollear */
-  background-color:#000; /* relleno en zonas vacías */
+  background:url("https://iili.io/KbTijol.jpg") no-repeat center center fixed;
+  background-size:cover; /* 👈 ocupa toda la pantalla, aunque estire */
   color:#fff;
   overflow-x:hidden;
 }
@@ -20,20 +18,9 @@ body{
 header{
   text-align:center;
   padding:60px 20px 20px;
+  background:transparent; /* 👈 sin fondo negro */
   position:relative;
   z-index:10;
-}
-
-/* Fondo negro solo detrás del logo */
-header::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  z-index:-1;
 }
 
 header img{
