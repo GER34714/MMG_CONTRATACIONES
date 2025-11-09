@@ -190,3 +190,11 @@ footer{
     background-position:center top;
   }
 }
+
+/* --- SOLO MOVILES: alejar un poco la imagen de fondo --- */
+@media (max-width: 768px) {
+  body {
+    background-size: 160% auto; /* aleja y mejora la nitidez */
+    background-position: center -120px; /* movela más arriba si querés */
+  }
+}
