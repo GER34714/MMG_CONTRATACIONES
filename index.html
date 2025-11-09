@@ -7,10 +7,10 @@
 
   <link rel="icon" type="image/png" href="https://iili.io/KtXqRHJ.md.png" />
   <meta name="theme-color" content="#b97cff">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Fondo de partículas -->
   <div id="particles-js"></div>
 
   <header>
@@ -20,9 +20,16 @@
 
   <!-- Carrusel Rockola -->
   <section class="artistas-wrapper">
-    <button class="flecha flecha-izq">◀</button>
-    <div id="artistas-container" class="artistas"></div>
-    <button class="flecha flecha-der">▶</button>
+    <div class="swiper">
+      <div class="swiper-wrapper" id="artistas-container"></div>
+
+      <!-- Botones -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- Paginación -->
+      <div class="swiper-pagination"></div>
+    </div>
   </section>
 
   <footer>
@@ -31,6 +38,7 @@
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
