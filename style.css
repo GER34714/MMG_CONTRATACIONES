@@ -1,13 +1,21 @@
 *{margin:0;padding:0;box-sizing:border-box;}
+html, body {
+  width:100%;
+  height:100%;
+  overflow-x:hidden;
+}
+
 body{
   font-family:'Poppins',sans-serif;
   background:url("https://iili.io/KbTijol.jpg") no-repeat center center fixed;
   background-size:cover;
+  background-color:#000; /* 👈 color base negro para evitar fondo gris */
   color:#fff;
-  overflow-x:hidden;
-  min-height:100vh;
   position:relative;
-  padding-top:80px; /* 👇 desplaza todo el contenido un poco más abajo */
+  padding-top:80px;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
 }
 
 /* Fondo partículas */
@@ -48,7 +56,8 @@ header h1{
 .artistas-wrapper{
   width:100%;
   position:relative;
-  padding:60px 0; /* 👈 más espacio arriba */
+  padding:60px 0;
+  flex:1; /* 👈 ocupa el espacio disponible y evita fondo vacío abajo */
 }
 
 .swiper{
@@ -173,14 +182,16 @@ header h1{
 /* --- FOOTER --- */
 footer{
   text-align:center;
-  padding:40px 20px 20px; /* 👈 bajado también */
+  padding:30px 20px 20px;
   color:#ccc;
   font-size:0.9rem;
+  background:rgba(0,0,0,0.6); /* 👈 para evitar contraste con fondo */
+  margin-top:auto;
 }
 
 /* --- RESPONSIVO --- */
 @media(max-width:768px){
-  body { padding-top:60px; } /* menos margen arriba en móvil */
+  body { padding-top:60px; }
   .artista{width:85%;height:460px;}
   .artista img{height:200px;}
   .info p{max-height:70px;}
