@@ -1,215 +1,41 @@
-/* -------------------- RESET GENERAL -------------------- */
-*{margin:0;padding:0;box-sizing:border-box;}
-html, body{
-  width:100%;
-  height:100%;
-  overflow-x:hidden;
-  background-color:#000;
-  font-family:'Poppins',sans-serif;
-  color:#fff;
-  text-align:center;
-}
-
-/* -------------------- FONDO -------------------- */
-body{
-  background:url("https://iili.io/KbTijol.jpg") no-repeat center center fixed;
-  background-size:cover;
-  min-height:100dvh;
-}
-
-/* Fondo partículas */
-#particles-js{
-  position:fixed;
-  top:0;left:0;width:100%;height:100%;
-  z-index:-1;
-}
-
-/* -------------------- HEADER -------------------- */
-header{
-  text-align:center;
-  padding:60px 20px 20px;
-  position:relative;
-  z-index:10;
-}
-
-header img{
-  width:260px;
-  border-radius:25px;
-  animation:glowLogo 3.5s infinite ease-in-out;
-  filter:drop-shadow(0 0 25px #b97cff) drop-shadow(0 0 35px #d4af37);
-}
-@keyframes glowLogo{
-  0%{filter:drop-shadow(0 0 15px #b97cff);}
-  50%{filter:drop-shadow(0 0 40px #d4af37);}
-  100%{filter:drop-shadow(0 0 15px #00ffff);}
-}
-
-header h1{
-  font-size:2rem;
-  margin-top:18px;
-  color:#fffbea;
-  text-shadow:0 0 10px #000,0 0 25px #b97cff,0 0 30px #000;
-}
-
-header p{
-  color:#fffde9;
-  text-shadow:0 0 10px #000,0 0 25px rgba(0,0,0,0.7);
-  line-height:1.6em;
-  max-width:700px;
-  margin:auto;
-}
-
-/* -------------------- CARRUSEL -------------------- */
-.artistas-wrapper{
-  width:100%;
-  position:relative;
-  padding:40px 0;
-  display:flex;
-  justify-content:center;
-}
-
-.swiper{
-  width:90%;
-  margin:auto;
-  padding-bottom:60px;
-}
-
-.swiper-wrapper{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-/* Animación de entrada global */
-.swiper-slide{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  transform:scale(0.9);
-  animation:fadeZoom 1.2s ease forwards;
-}
-@keyframes fadeZoom{
-  0%{opacity:0;transform:scale(0.9);}
-  100%{opacity:1;transform:scale(1);}
-}
-
-/* -------------------- TARJETAS -------------------- */
-.artista{
-  width:330px;
-  background:rgba(25,25,45,0.85);
-  border-radius:18px;
-  box-shadow:0 0 25px rgba(185,124,255,0.4);
-  overflow:hidden;
-  text-align:center;
-  backdrop-filter:blur(6px);
-  transition:transform .3s;
-  display:flex;
-  flex-direction:column;
-  height:500px;
-  margin:auto;
-}
-.artista:hover{transform:scale(1.05);}
-
-/* Imagen completa y limpia */
-.artista img{
-  width:100%;
-  height:260px;
-  object-fit:contain;
-  background:#000;
-  border-bottom:3px solid #b97cff;
-  transition:all .4s ease;
-}
-.artista img:hover{filter:brightness(1.1);}
-
-/* -------------------- INFO -------------------- */
-.info{
-  padding:20px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:center;
-}
-.info h2{
-  font-size:1.3rem;
-  margin-bottom:10px;
-  color:#fffbea;
-  text-shadow:0 0 10px #000,0 0 12px #b97cff;
-}
-.info p{
-  font-size:0.95rem;
-  color:#f9f9f9;
-  line-height:1.4em;
-  text-align:center;
-  margin-bottom:auto;
-  max-height:85px;
-  overflow:hidden;
-  text-shadow:0 0 8px #000;
-}
-
-/* -------------------- BOTÓN CONTRATAR -------------------- */
-.btn{
-  background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
-  background-size:300% 300%;
-  color:#000;
-  border:none;
-  padding:12px 28px;
-  border-radius:35px;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(212,175,55,0.7);
-  text-shadow:0 0 8px rgba(255,255,255,0.5);
-  animation:glowBtn 3s infinite alternate;
-  margin:20px auto 25px auto;
-  display:block;
-}
-@keyframes glowBtn{
-  0%{box-shadow:0 0 20px #b97cff,0 0 30px #d4af37;}
-  100%{box-shadow:0 0 40px #ffcc70,0 0 60px #b97cff;}
-}
-.btn:hover{
-  transform:scale(1.1);
-  background-position:right center;
-}
-
-/* -------------------- FLECHAS -------------------- */
+/* --- Flechas visibles solo en escritorio --- */
 .swiper-button-prev,
-.swiper-button-next{
-  color:#fff;
-  text-shadow:0 0 10px #b97cff,0 0 20px #d4af37;
-  filter:drop-shadow(0 0 8px #b97cff);
-  transition:all .3s ease;
+.swiper-button-next {
+  color: #fff;
+  text-shadow: 0 0 10px #b97cff, 0 0 20px #d4af37;
+  filter: drop-shadow(0 0 8px #b97cff);
+  transition: all .3s ease;
+  top: 50%;
+  transform: translateY(-50%);
 }
+
 .swiper-button-prev:hover,
-.swiper-button-next:hover{
-  color:#d4af37;
-  transform:scale(1.15);
+.swiper-button-next:hover {
+  color: #d4af37;
+  transform: translateY(-50%) scale(1.15);
 }
 
-/* -------------------- FOOTER -------------------- */
-footer{
-  text-align:center;
-  padding:25px;
-  color:#ccc;
-  font-size:0.9rem;
-}
-footer a{
-  color:#b97cff;
-  text-decoration:none;
-  font-weight:600;
-}
-footer a:hover{
-  color:#ffcc70;
-  text-shadow:0 0 10px #b97cff;
+/* 📱 Ocultar flechas en móviles */
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important;
+  }
 }
 
-/* -------------------- RESPONSIVO -------------------- */
-@media(max-width:768px){
-  header img{width:220px;}
-  header h1{font-size:1.5rem;}
-  .artista{width:85%;height:460px;}
-  .artista img{height:220px;}
-  .info p{max-height:70px;}
-  .swiper{width:95%;}
+/* 💎 Centrado preciso de tarjetas */
+.artistas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper {
+  width: 90%;
+  max-width: 1300px;
+  margin: auto;
+}
+
+.swiper-wrapper {
+  align-items: center;
 }
