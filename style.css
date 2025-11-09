@@ -49,6 +49,18 @@ header h1{
   display:flex;
   justify-content:center;
   align-items:center;
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeInSlide 1s ease forwards;
+}
+.swiper-slide:nth-child(odd){animation-delay:.2s;}
+.swiper-slide:nth-child(even){animation-delay:.4s;}
+
+@keyframes fadeInSlide{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 /* --- TARJETAS --- */
@@ -61,6 +73,10 @@ header h1{
   text-align:center;
   backdrop-filter:blur(6px);
   transition:transform .3s;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height:480px;
 }
 .artista:hover{transform:scale(1.05);}
 
@@ -74,7 +90,10 @@ header h1{
 }
 .artista img:hover{filter:brightness(1.1);}
 
-.info{padding:20px;}
+.info{
+  padding:20px;
+  flex-grow:1;
+}
 .info h2{
   font-size:1.3rem;
   margin-bottom:10px;
@@ -100,37 +119,50 @@ header h1{
   box-shadow:0 0 25px rgba(212,175,55,0.7);
   text-shadow:0 0 8px rgba(255,255,255,0.5);
   animation:glowBtn 3s infinite alternate;
-  margin-bottom:20px;
+  margin:15px auto 25px auto;
+  display:inline-block;
+  transition:transform .2s ease;
 }
 @keyframes glowBtn{
   0%{box-shadow:0 0 20px #b97cff,0 0 30px #d4af37;}
   100%{box-shadow:0 0 40px #ffcc70,0 0 60px #b97cff;}
 }
 .btn:hover{
-  transform:scale(1.1);
+  transform:scale(1.12);
   background-position:right center;
 }
 
-/* --- FLECHAS Y PAGINACIÓN --- */
+/* --- FLECHAS --- */
 .swiper-button-prev,
 .swiper-button-next{
   color:#fff;
   text-shadow:0 0 10px #b97cff,0 0 20px #d4af37;
   filter:drop-shadow(0 0 8px #b97cff);
+  transition:all .3s ease;
 }
 .swiper-button-prev:hover,
 .swiper-button-next:hover{
   color:#d4af37;
   transform:scale(1.1);
 }
-.swiper-pagination-bullet{
-  background:#b97cff;
-  opacity:0.7;
-}
-.swiper-pagination-bullet-active{
-  background:#d4af37;
-  opacity:1;
+
+/* ❌ eliminamos los puntos */
+.swiper-pagination{
+  display:none !important;
 }
 
 /* --- FOOTER --- */
-footer{text-align:center;padding:20px;color:#ccc;font-size:0.9rem;}
+footer{
+  text-align:center;
+  padding:20px;
+  color:#ccc;
+  font-size:0.9rem;
+}
+
+/* --- RESPONSIVO --- */
+@media(max-width:768px){
+  .artista{width:85%;height:460px;}
+  .artista img{height:220px;}
+  header h1{font-size:1.4rem;}
+  .swiper{width:95%;}
+}
