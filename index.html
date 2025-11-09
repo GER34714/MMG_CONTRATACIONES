@@ -1,98 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MMG™ | Manager Music Group</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MMG™ | Representante de Artistas</title>
+
+  <link rel="icon" type="image/png" href="https://iili.io/KtXqRHJ.md.png" />
+  <meta name="theme-color" content="#b97cff">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="https://iili.io/KtXqRHJ.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Fondo de partículas -->
   <div id="particles-js"></div>
 
   <header>
-    <img src="https://iili.io/KtXqRHJ.png" alt="MMG Logo" class="logo">
-    <h1 class="titulo">Manager Music Group™</h1>
-    <p class="subtitulo">Representante de Artistas 🎤</p>
-    <p class="contacto">📞 +54 9 11 5734-3551 | <a href="https://www.instagram.com/managermusicgrup1" target="_blank">@managermusicgrup1</a></p>
+    <img src="https://iili.io/KtXqRHJ.md.png" alt="MMG Logo">
+    <h1>MMG™ | Contrataciones Oficiales de la Movida Tropical</h1>
   </header>
 
-  <section class="carrusel">
-    <button class="flecha izquierda">&#10094;</button>
-    <div class="contenedor-cards" id="carrusel">
-      <!-- TARJETAS DE ARTISTAS -->
-      <div class="card">
-        <img src="https://iili.io/KtSvboJ.jpg" alt="Re Piola">
-        <h3>Re Piola</h3>
-        <p>Sonido moderno y buena onda. Perfectos para fiestas y escenarios vibrantes.</p>
-        <a href="https://wa.me/5491157343551" class="btn">Contratar</a>
-      </div>
-
-      <div class="card">
-        <img src="https://iili.io/KtWbyCv.jpg" alt="Banda Vamos">
-        <h3>Banda Vamos</h3>
-        <p>Energía cuartetera y ritmo contagioso. Ideales para eventos y festivales.</p>
-        <a href="https://wa.me/5491157343551" class="btn">Contratar</a>
-      </div>
-
-      <div class="card">
-        <img src="https://iili.io/KbTijol.jpg" alt="Andy el Cumbiero">
-        <h3>Andy el Cumbiero</h3>
-        <p>Estilo joven y carismático, siempre con la mejor cumbia para animar cualquier evento.</p>
-        <a href="https://wa.me/5491157343551" class="btn">Contratar</a>
-      </div>
-
-      <div class="card">
-        <img src="https://iili.io/KtYFUnn.jpg" alt="Flor de Piedra">
-        <h3>Flor de Piedra</h3>
-        <p>Banda clásica con historia. Cumbia romántica y auténtica para todos los públicos.</p>
-        <a href="https://wa.me/5491157343551" class="btn">Contratar</a>
-      </div>
-
-      <div class="card">
-        <img src="https://iili.io/KtYtCCv.jpg" alt="Grupo Gatillo">
-        <h3>Grupo Gatillo</h3>
-        <p>Sonido de barrio con identidad. Ideal para eventos populares y festivales.</p>
-        <a href="https://wa.me/5491157343551" class="btn">Contratar</a>
-      </div>
-    </div>
-    <button class="flecha derecha">&#10095;</button>
+  <!-- Carrusel Rockola -->
+  <section class="artistas-wrapper">
+    <div id="artistas-container" class="artistas"></div>
   </section>
 
   <footer>
-    <p>⚡ Powered by <strong>Ciborg347™</strong> | Diseños con ritmo y estilo 🎶</p>
+    © 2025 MMG Manager Music Group™ · Powered by Ciborg347™
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 90 },
-        "color": { "value": ["#a020f0", "#00ffff", "#ffd700"] },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.4 },
-        "size": { "value": 3 },
-        "move": { "enable": true, "speed": 1.2 }
-      },
-      "interactivity": { "events": { "onhover": { "enable": false } } }
-    });
-
-    // Carrusel manual
-    const carrusel = document.getElementById("carrusel");
-    const izquierda = document.querySelector(".izquierda");
-    const derecha = document.querySelector(".derecha");
-
-    izquierda.addEventListener("click", () => carrusel.scrollBy({ left: -300, behavior: "smooth" }));
-    derecha.addEventListener("click", () => carrusel.scrollBy({ left: 300, behavior: "smooth" }));
-
-    // Soporte táctil mobile
-    let startX = 0;
-    carrusel.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-    carrusel.addEventListener("touchmove", e => {
-      const diff = startX - e.touches[0].clientX;
-      carrusel.scrollBy({ left: diff / 3, behavior: "smooth" });
-    });
-  </script>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
