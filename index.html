@@ -5,25 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MMG™ | Representante de Artistas</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://iili.io/KtXqRHJ.md.png" />
   <meta name="theme-color" content="#b97cff">
 
-  <!-- Estilos -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- SwiperJS (para el carrusel) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 
 <body>
-  <!-- Fondo de partículas -->
   <div id="particles-js"></div>
 
-  <!-- HEADER -->
   <header>
     <img src="https://iili.io/KtXqRHJ.md.png" alt="MMG Logo">
-
     <h1>🎤 ¡Llená tu evento de ritmo y energía!</h1>
     <p style="font-size:1.1rem;margin-top:15px;max-width:700px;margin:auto;text-shadow:0 0 15px #000;">
       Shows, festivales, boliches o eventos privados — nosotros nos encargamos de llevarte la mejor música en vivo. <br>
@@ -36,101 +29,97 @@
     </button>
   </header>
 
-  <!-- CARRUSEL ROCKOLA -->
+  <!-- 🌀 Carrusel efecto Coverflow -->
   <section class="artistas-wrapper">
-    <div class="swiper">
+    <div class="swiper artistasSwiper">
       <div class="swiper-wrapper" id="artistas-container"></div>
-
-      <!-- Flechas -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
-
-      <!-- Paginación (oculta por CSS) -->
       <div class="swiper-pagination"></div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    © 2025 MMG Manager Music Group™ · Powered by Ciborg347™
+    © 2025 MMG Manager Music Group™ · 
+    <a href="https://ciborg347.onrender.com" target="_blank" style="color:#b97cff;text-decoration:none;font-weight:600;">
+      Creado y diseñado por Ciborg347™
+    </a>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
-  // Fondo de partículas
-  particlesJS('particles-js', {
-    "particles": {
-      "number": { "value": 70 },
-      "color": { "value": ["#d4af37", "#b97cff"] },
-      "opacity": { "value": 0.5, "random": true },
-      "size": { "value": 3, "random": true },
-      "move": { "enable": true, "speed": 1.5 },
-      "line_linked": { "enable": false }
-    },
-    "retina_detect": true
-  });
+  particlesJS('particles-js',{
+    particles:{number:{value:70},color:{value:["#d4af37","#b97cff"]},
+      opacity:{value:0.5,random:true},size:{value:3,random:true},
+      move:{enable:true,speed:1.5},line_linked:{enable:false}},retina_detect:true});
 
-  // Cargar artistas
-  async function cargarArtistas() {
-    try {
-      const res = await fetch('artistas.json');
-      const artistas = await res.json();
-
-      const contenedor = document.getElementById('artistas-container');
-      contenedor.innerHTML = '';
-
-      artistas.forEach(a => {
-        const slide = document.createElement('div');
+  async function cargarArtistas(){
+    try{
+      const res=await fetch('artistas.json');
+      const artistas=await res.json();
+      const cont=document.getElementById('artistas-container');
+      cont.innerHTML='';
+      artistas.forEach(a=>{
+        const slide=document.createElement('div');
         slide.classList.add('swiper-slide');
-        slide.innerHTML = `
+        slide.innerHTML=`
           <div class="artista">
-            <img src="${a.img || 'https://iili.io/KtXqRHJ.md.png'}" alt="${a.nombre}">
+            <img src="${a.img||'https://iili.io/KtXqRHJ.md.png'}" alt="${a.nombre}">
             <div class="info">
               <h2>${a.nombre}</h2>
               <p>${a.descripcion}</p>
             </div>
             <button class="btn" onclick="contratar('${a.nombre}')">🎤 Contratar Artista</button>
-          </div>
-        `;
-        contenedor.appendChild(slide);
+          </div>`;
+        cont.appendChild(slide);
       });
 
-      // Iniciar Swiper
-      new Swiper('.swiper', {
-        slidesPerView: 1,
-        spaceBetween: 25,
-        grabCursor: true,
-        loop: true,
-        autoplay: {
-          delay: 4500,
-          disableOnInteraction: false,
+      // 🎧 Carrusel estilo premium
+      new Swiper(".artistasSwiper",{
+        effect:"coverflow",
+        grabCursor:true,
+        centeredSlides:true,
+        slidesPerView:"auto",
+        loop:true,
+        coverflowEffect:{
+          rotate:0,
+          stretch:0,
+          depth:250,
+          modifier:2.5,
+          slideShadows:true,
         },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+        autoplay:{
+          delay:8000,
+          disableOnInteraction:false,
+          pauseOnMouseEnter:true, // 🧠 se pausa al pasar el mouse
         },
-        breakpoints: {
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 }
+        navigation:{
+          nextEl:".swiper-button-next",
+          prevEl:".swiper-button-prev",
+        },
+        pagination:{
+          el:".swiper-pagination",
+          clickable:true,
+        },
+        breakpoints:{
+          320:{slidesPerView:1.2,spaceBetween:10},
+          768:{slidesPerView:2,spaceBetween:20},
+          1024:{slidesPerView:3,spaceBetween:30}
         }
       });
-
-    } catch (err) {
-      console.error('Error al cargar artistas:', err);
-    }
+    }catch(err){console.error('Error al cargar artistas:',err);}
   }
 
-  // WhatsApp contacto
   function contratar(nombre){
-    const numero = "5491157343551";
-    const mensaje = encodeURIComponent(`Hola 👋, quiero contratar a ${nombre} (MMG | Representante de Artistas).`);
-    window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank');
+    const num="5491157343551";
+    const msg=encodeURIComponent(`Hola 👋, quiero contratar a ${nombre} (MMG | Representante de Artistas).`);
+    window.open(`https://wa.me/${num}?text=${msg}`,'_blank');
   }
 
-  document.addEventListener('DOMContentLoaded', cargarArtistas);
+  document.addEventListener('DOMContentLoaded',cargarArtistas);
   </script>
 </body>
 </html>
