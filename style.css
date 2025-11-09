@@ -1,220 +1,137 @@
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{
-  width:100%;
-  height:100%;
-  overflow-x:hidden;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MMG™ | Representante de Artistas</title>
 
-/* 🖼 Fondo con overlay */
-body{
-  font-family:'Poppins',sans-serif;
-  background:
-    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.75)),
-    url("https://iili.io/KbTijol.jpg") no-repeat center center fixed;
-  background-size:cover;
-  min-height:100dvh;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://iili.io/KtXqRHJ.md.png" />
+  <meta name="theme-color" content="#b97cff">
 
-/* Fondo partículas */
-#particles-js{
-  position:fixed;
-  top:0;left:0;width:100%;height:100%;
-  z-index:-1;
-}
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
 
-/* HEADER */
-header{
-  text-align:center;
-  padding:60px 20px 20px;
-  position:relative;
-  z-index:10;
-  max-width:900px;
-}
+  <!-- SwiperJS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
 
-header img{
-  width:260px;
-  border-radius:25px;
-  animation:glowLogo 3.5s infinite ease-in-out;
-  filter:drop-shadow(0 0 30px #b97cff) drop-shadow(0 0 40px #d4af37);
-}
+<body>
+  <!-- Fondo partículas -->
+  <div id="particles-js"></div>
 
-@keyframes glowLogo{
-  0%{filter:drop-shadow(0 0 15px #b97cff);}
-  50%{filter:drop-shadow(0 0 40px #d4af37);}
-  100%{filter:drop-shadow(0 0 15px #00ffff);}
-}
+  <!-- HEADER -->
+  <header>
+    <img src="https://iili.io/KtXqRHJ.md.png" alt="MMG Logo">
 
-header h1{
-  font-size:2rem;
-  margin-top:20px;
-  color:#fff;
-  text-shadow:0 0 6px #000,0 0 12px #000,0 0 30px #b97cff;
-}
+    <h1>🎤 ¡Llená tu evento de ritmo y energía!</h1>
+    <p style="font-size:1.1rem;margin-top:15px;max-width:700px;margin:auto;text-shadow:0 0 15px #000;">
+      Shows, festivales, boliches o eventos privados — nosotros nos encargamos de llevarte la mejor música en vivo. <br>
+      Contratá artistas con experiencia, profesionalismo y presencia escénica garantizada. <br>
+      <strong>MMG™ | Representante de Artistas. Tu contacto directo con el show.</strong>
+    </p>
 
-header p{
-  font-size:1.05rem;
-  color:#f5f5f5;
-  line-height:1.6em;
-  margin-top:10px;
-  text-shadow:0 0 6px #000,0 0 12px #000;
-}
+    <button class="btn" onclick="window.open('https://wa.me/5491157343551?text=Hola%20👋%20quiero%20contratar%20un%20artista%20para%20mi%20evento','_blank')">
+      🎶 Pedí tu cotización ahora
+    </button>
+  </header>
 
-/* --- CARRUSEL ROCKOLA --- */
-.artistas-wrapper{
-  width:100%;
-  display:flex;
-  justify-content:center; 
-  align-items:center;
-  padding:50px 0;
-}
+  <!-- CARRUSEL ROCKOLA -->
+  <section class="artistas-wrapper">
+    <div class="swiper">
+      <div class="swiper-wrapper" id="artistas-container"></div>
 
-/* Swiper centrado real */
-.swiper{
-  width:90%;
-  max-width:1300px;
-  margin:auto;
-  padding-bottom:60px;
-}
+      <!-- Flechas -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
 
-.swiper-wrapper{
-  display:flex !important;
-  justify-content:center !important; /* ✅ centra todas las tarjetas */
-  align-items:center;
-  gap:25px; /* espacio uniforme entre ellas */
-}
+  <!-- FOOTER -->
+  <footer>
+    © 2025 MMG Manager Music Group™ · 
+    <a href="https://ciborg347.onrender.com" target="_blank" style="color:#b97cff;text-decoration:none;font-weight:600;">
+      Creado y diseñado por Ciborg347™
+    </a>
+  </footer>
 
-.swiper-slide{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-/* --- TARJETAS --- */
-.artista{
-  width:330px;
-  background:rgba(25,25,45,0.85);
-  border-radius:18px;
-  box-shadow:0 0 25px rgba(185,124,255,0.4);
-  overflow:hidden;
-  text-align:center;
-  backdrop-filter:blur(6px);
-  transition:transform .3s;
-  display:flex;
-  flex-direction:column;
-  height:500px;
-  margin:auto;
-}
-.artista:hover{transform:scale(1.05);}
+  <script>
+  // Fondo de partículas
+  particlesJS('particles-js', {
+    "particles": {
+      "number": { "value": 70 },
+      "color": { "value": ["#d4af37", "#b97cff"] },
+      "opacity": { "value": 0.5, "random": true },
+      "size": { "value": 3, "random": true },
+      "move": { "enable": true, "speed": 1.5 },
+      "line_linked": { "enable": false }
+    },
+    "retina_detect": true
+  });
 
-/* ✅ Imágenes completas sin recortes */
-.artista img{
-  width:100%;
-  height:280px;
-  object-fit:contain;
-  background:#000;
-  border-bottom:3px solid #b97cff;
-  transition:all .4s ease;
-}
-.artista img:hover{filter:brightness(1.1);}
+  // Cargar artistas
+  async function cargarArtistas() {
+    try {
+      const res = await fetch('artistas.json');
+      const artistas = await res.json();
 
-/* --- INFO --- */
-.info{
-  padding:20px;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:center;
-}
-.info h2{
-  font-size:1.3rem;
-  color:#fff;
-  text-shadow:0 0 6px #000,0 0 10px #b97cff;
-  margin-bottom:10px;
-}
-.info p{
-  font-size:0.95rem;
-  color:#f1f1f1;
-  text-align:center;
-  line-height:1.5em;
-  text-shadow:0 0 6px #000,0 0 10px rgba(0,0,0,0.7);
-  margin-bottom:auto;
-  max-height:85px;
-  overflow:hidden;
-}
+      const contenedor = document.getElementById('artistas-container');
+      contenedor.innerHTML = '';
 
-/* --- BOTÓN CONTRATAR --- */
-.btn{
-  background:linear-gradient(90deg,#d4af37,#ffcc70,#d4af37);
-  background-size:300% 300%;
-  color:#000;
-  border:none;
-  padding:12px 28px;
-  border-radius:35px;
-  font-weight:700;
-  cursor:pointer;
-  box-shadow:0 0 25px rgba(212,175,55,0.7);
-  text-shadow:0 0 8px rgba(255,255,255,0.5);
-  animation:glowBtn 3s infinite alternate;
-  margin:20px auto 25px auto;
-  display:block;
-}
-@keyframes glowBtn{
-  0%{box-shadow:0 0 20px #b97cff,0 0 30px #d4af37;}
-  100%{box-shadow:0 0 40px #ffcc70,0 0 60px #b97cff;}
-}
-.btn:hover{
-  transform:scale(1.1);
-  background-position:right center;
-}
+      artistas.forEach(a => {
+        const slide = document.createElement('div');
+        slide.classList.add('swiper-slide');
+        slide.innerHTML = `
+          <div class="artista">
+            <img src="${a.img || 'https://iili.io/KtXqRHJ.md.png'}" alt="${a.nombre}">
+            <div class="info">
+              <h2>${a.nombre}</h2>
+              <p>${a.descripcion}</p>
+            </div>
+            <button class="btn" onclick="contratar('${a.nombre}')">🎤 Contratar Artista</button>
+          </div>
+        `;
+        contenedor.appendChild(slide);
+      });
 
-/* --- FLECHAS --- */
-.swiper-button-prev,
-.swiper-button-next{
-  color:#fff;
-  text-shadow:0 0 10px #b97cff,0 0 20px #d4af37;
-  filter:drop-shadow(0 0 8px #b97cff);
-  transition:all .3s ease;
-}
-.swiper-button-prev:hover,
-.swiper-button-next:hover{
-  color:#d4af37;
-  transform:scale(1.1);
-}
+      // 🌀 Swiper centrado + autoplay lento
+      new Swiper('.swiper', {
+        slidesPerView: 1,
+        spaceBetween: 25,
+        centeredSlides: true,
+        loop: true,
+        grabCursor: true,
+        autoplay: {
+          delay: 8000, // ⏱️ 8 segundos entre artistas
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          768: { slidesPerView: 2, centeredSlides: true },
+          1024: { slidesPerView: 3, centeredSlides: true }
+        }
+      });
 
-/* ❌ sin puntos */
-.swiper-pagination{display:none !important;}
-
-/* --- FOOTER --- */
-footer{
-  text-align:center;
-  padding:20px;
-  color:#ccc;
-  font-size:0.9rem;
-}
-footer a{
-  color:#b97cff;
-  text-decoration:none;
-  font-weight:600;
-}
-footer a:hover{
-  color:#ffcc70;
-  text-shadow:0 0 10px #b97cff;
-}
-
-/* --- RESPONSIVO --- */
-@media(max-width:768px){
-  header img{width:220px;}
-  header h1{font-size:1.6rem;}
-  .artista{width:85%;height:460px;}
-  .artista img{height:230px;}
-  .info p{max-height:70px;}
-  .swiper{width:95%;}
-  .swiper-wrapper{
-    justify-content:center !important;
+    } catch (err) {
+      console.error('Error al cargar artistas:', err);
+    }
   }
-}
+
+  // WhatsApp contacto
+  function contratar(nombre){
+    const numero = "5491157343551";
+    const mensaje = encodeURIComponent(`Hola 👋, quiero contratar a ${nombre} (MMG | Representante de Artistas).`);
+    window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank');
+  }
+
+  document.addEventListener('DOMContentLoaded', cargarArtistas);
+  </script>
+</body>
+</html>
