@@ -9,7 +9,7 @@ body{
   font-family:'Poppins',sans-serif;
   background:url("https://iili.io/KbTijol.jpg") no-repeat center center fixed;
   background-size:cover;
-  background-color:#000; /* 👈 color base negro para evitar fondo gris */
+  background-color:#000;
   color:#fff;
   position:relative;
   padding-top:80px;
@@ -57,7 +57,7 @@ header h1{
   width:100%;
   position:relative;
   padding:60px 0;
-  flex:1; /* 👈 ocupa el espacio disponible y evita fondo vacío abajo */
+  flex:1;
 }
 
 .swiper{
@@ -182,11 +182,63 @@ header h1{
 /* --- FOOTER --- */
 footer{
   text-align:center;
-  padding:30px 20px 20px;
+  padding:30px 20px 30px;
   color:#ccc;
   font-size:0.9rem;
-  background:rgba(0,0,0,0.6); /* 👈 para evitar contraste con fondo */
+  background:rgba(0,0,0,0.7);
   margin-top:auto;
+  position:relative;
+}
+.firma-ciborg {
+  color:#00ffff;
+  text-decoration:none;
+  font-weight:700;
+  text-shadow:0 0 10px #00ffff, 0 0 20px #00ffff;
+  transition:all 0.3s ease;
+}
+.firma-ciborg:hover {
+  color:#b97cff;
+  text-shadow:0 0 20px #b97cff, 0 0 40px #d4af37;
+}
+
+/* Instagram fijo en footer */
+.social-footer {
+  margin-top:15px;
+}
+.social-footer img {
+  width:45px;
+  height:45px;
+  filter:drop-shadow(0 0 6px #b97cff);
+  transition:transform 0.3s ease, filter 0.3s ease;
+}
+.social-footer img:hover {
+  transform:scale(1.1);
+  filter:drop-shadow(0 0 15px #d4af37);
+}
+
+/* --- BOTÓN WHATSAPP FLOTANTE --- */
+.btn-whatsapp {
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  z-index:100;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle, #25D366 0%, #128C7E 100%);
+  box-shadow:0 0 20px rgba(0,0,0,0.6);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-whatsapp img {
+  width:36px;
+  height:36px;
+}
+.btn-whatsapp:hover {
+  transform:scale(1.1);
+  box-shadow:0 0 30px rgba(255,255,255,0.4);
 }
 
 /* --- RESPONSIVO --- */
@@ -197,25 +249,18 @@ footer{
   .info p{max-height:70px;}
   header h1{font-size:1.3rem;}
   .swiper{width:95%;}
+  .btn-whatsapp{width:50px;height:50px;bottom:20px;right:20px;}
+  .btn-whatsapp img{width:28px;height:28px;}
+  .social-footer img{width:40px;height:40px;}
 }
 
-/* --- SOLO PC: mantener centrada la imagen --- */
-@media (min-width: 1024px) {
-  body {
-    background-position:center top;
-    background-attachment:fixed;
-    background-size:cover;
-  }
-}
-
-/* --- SOLO MOVILES: fondo fijo, alejado y con leve filtro --- */
+/* --- SOLO MOVILES: fondo fijo, alejado y leve filtro --- */
 @media (max-width: 768px) {
   body {
     background-attachment:fixed;
     background-size:150% auto;
     background-position:center -120px;
   }
-
   body::after {
     content:"";
     position:fixed;
