@@ -182,6 +182,11 @@ footer{
   .info p{max-height:70px;}
   header h1{font-size:1.4rem;}
   .swiper{width:95%;}
+
+  /* 👇 Bajamos más la imagen de fondo solo en móviles */
+  body {
+    background-position:center -280px; /* 🔥 ajustá este valor (-200, -300, etc.) según el efecto que busques */
+  }
 }
 
 /* --- SOLO PC: mantener centrada la imagen --- */
