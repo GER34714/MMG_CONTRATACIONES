@@ -11,17 +11,15 @@ particlesJS('particles-js', {
   "retina_detect": true
 });
 
-// Crear carrusel con control por dispositivo
+// Crear carrusel
 async function cargarArtistas() {
   try {
     const res = await fetch('artistas.json');
     const artistas = await res.json();
-
     const contenedor = document.getElementById('artistas-container');
     contenedor.innerHTML = '';
 
     const artistasLoop = [...artistas, ...artistas];
-
     artistasLoop.forEach(a => {
       const card = document.createElement('div');
       card.classList.add('artista');
@@ -36,7 +34,7 @@ async function cargarArtistas() {
       contenedor.appendChild(card);
     });
 
-    // 💻 En PC: movimiento automático lento
+    // --- Movimiento automático en PC ---
     if (!/Mobi|Android/i.test(navigator.userAgent)) {
       let pos = 0;
       setInterval(() => {
@@ -45,14 +43,27 @@ async function cargarArtistas() {
         if (Math.abs(pos) > contenedor.scrollWidth / 2) pos = 0;
       }, 30);
     }
-    // 📱 En móviles: movimiento manual con swipe
-    else {
-      contenedor.style.overflowX = "auto";
-      contenedor.style.scrollSnapType = "x mandatory";
-      document.querySelectorAll(".artista").forEach(card => {
-        card.style.scrollSnapAlign = "center";
-      });
-    }
+
+    // --- Flechas de control ---
+    const btnIzq = document.querySelector('.flecha-izq');
+    const btnDer = document.querySelector('.flecha-der');
+
+    btnIzq.addEventListener('click', () => {
+      contenedor.scrollBy({ left: -350, behavior: 'smooth' });
+    });
+
+    btnDer.addEventListener('click', () => {
+      contenedor.scrollBy({ left: 350, behavior: 'smooth' });
+    });
+
+    // --- Swipe manual (para móviles y PC táctiles) ---
+    let startX = 0;
+    contenedor.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    contenedor.addEventListener('touchmove', e => {
+      let diff = startX - e.touches[0].clientX;
+      contenedor.scrollLeft += diff;
+      startX = e.touches[0].clientX;
+    });
 
   } catch (err) {
     console.error('Error al cargar artistas:', err);
