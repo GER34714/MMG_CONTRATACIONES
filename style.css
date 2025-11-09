@@ -196,9 +196,9 @@ footer{
   .swiper{width:95%;}
 }
 
-/* --- SOLO PC: fondo más abajo --- */
+/* --- SOLO PC: bajar un poco la imagen de fondo --- */
 @media (min-width: 1024px) {
   body {
-    background-position: center -350px; /* 👈 bajada extra solo en PC */
+    background-position: center -250px; /* 👈 ajustá este valor si querés bajarla más o menos */
   }
 }
