@@ -1,7 +1,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'Poppins',sans-serif;
-  background:#000 url("https://iili.io/KbTijol.jpg") no-repeat center top;
+  background:url("https://iili.io/KbTijol.jpg") no-repeat center top;
   background-size:cover;
   color:#fff;
   overflow-x:hidden;
@@ -20,18 +20,6 @@ header{
   padding:60px 20px 20px;
   position:relative;
   z-index:10;
-}
-
-/* Fondo negro solo detrás del logo */
-header::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  z-index:-1;
 }
 
 header img{
@@ -196,9 +184,9 @@ footer{
   .swiper{width:95%;}
 }
 
-/* --- SOLO PC: bajar un poco la imagen de fondo --- */
+/* --- SOLO PC: mantener centrada la imagen --- */
 @media (min-width: 1024px) {
   body {
-    background-position: center -250px; /* 👈 ajustá este valor si querés bajarla más o menos */
+    background-position:center top;
   }
 }
