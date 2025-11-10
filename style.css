@@ -96,7 +96,7 @@ header h1{
   transition:transform .3s;
   display:flex;
   flex-direction:column;
-  height:500px;
+  height:520px; /* 🔹 Altura fija igual para todos */
 }
 .artista:hover{transform:scale(1.05);}
 
@@ -127,11 +127,13 @@ header h1{
 .info p{
   font-size:0.95rem;
   color:#eee;
-  line-height:1.4em;
+  line-height:1.45em;
   text-align:center;
   margin-bottom:auto;
-  max-height:85px;
   overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:5; /* 🔹 Hasta 5 líneas visibles */
+  -webkit-box-orient:vertical;
 }
 
 /* --- BOTÓN CONTRATAR --- */
@@ -246,9 +248,14 @@ footer{
 /* --- RESPONSIVO --- */
 @media(max-width:768px){
   body { padding-top:60px; }
-  .artista{width:85%;height:460px;}
+  .artista{
+    width:85%;
+    height:470px; /* 🔹 Altura fija para móvil */
+  }
   .artista img{height:200px;}
-  .info p{max-height:70px;}
+  .info p{
+    -webkit-line-clamp:4; /* 🔹 4 líneas en móvil */
+  }
   header h1{font-size:1.3rem;}
   .swiper{width:95%;}
   .btn-whatsapp{
