@@ -1,4 +1,4 @@
-// Fondo de partículas
+// 🟣 Fondo de partículas
 particlesJS('particles-js', {
   "particles": {
     "number": { "value": 70 },
@@ -11,7 +11,7 @@ particlesJS('particles-js', {
   "retina_detect": true
 });
 
-// Cargar artistas
+// 🟣 Cargar artistas
 async function cargarArtistas() {
   try {
     const res = await fetch('artistas.json');
@@ -27,7 +27,8 @@ async function cargarArtistas() {
           <img src="${a.img || 'https://iili.io/KtXqRHJ.md.png'}" alt="${a.nombre}">
           <div class="info">
             <h2>${a.nombre}</h2>
-            <p>${a.descripcion}</p>
+            <p class="descripcion-corta">${a.descripcion}</p>
+            <button class="leer-mas" style="display:none;">Leer más</button>
           </div>
           <button class="btn" onclick="contratar('${a.nombre}')">🎤 Contratar Artista</button>
         </div>
@@ -35,6 +36,7 @@ async function cargarArtistas() {
       contenedor.appendChild(slide);
     });
 
+    // 🟣 Inicializar Swiper
     new Swiper('.swiper', {
       loop: true,
       slidesPerView: 3,
@@ -45,6 +47,7 @@ async function cargarArtistas() {
         delay: 7000,
         disableOnInteraction: false,
       },
+      speed: 1200,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -60,16 +63,50 @@ async function cargarArtistas() {
       }
     });
 
+    // 🟣 Detectar textos largos y mostrar botón "Leer más"
+    setTimeout(() => {
+      document.querySelectorAll('.descripcion-corta').forEach(parrafo => {
+        const lineHeight = parseFloat(getComputedStyle(parrafo).lineHeight);
+        const maxVisibleHeight = lineHeight * 4; // 4 líneas visibles
+        if (parrafo.scrollHeight > maxVisibleHeight + 2) {
+          const boton = parrafo.nextElementSibling;
+          boton.style.display = 'inline-block';
+        }
+      });
+
+      // 🟣 Evento de Leer más / Leer menos
+      document.querySelectorAll(".leer-mas").forEach(boton => {
+        boton.addEventListener("click", () => {
+          const parrafo = boton.previousElementSibling;
+          const tarjeta = boton.closest('.artista');
+
+          parrafo.classList.toggle("expandido");
+          boton.textContent = parrafo.classList.contains("expandido") ? "Leer menos" : "Leer más";
+
+          // Suave transición de altura + brillo dorado al expandir
+          tarjeta.style.transition = "all 0.4s ease";
+          if (parrafo.classList.contains("expandido")) {
+            tarjeta.style.height = "auto";
+            tarjeta.style.boxShadow = "0 0 45px rgba(212,175,55,0.8), 0 0 80px rgba(185,124,255,0.7)";
+          } else {
+            tarjeta.style.height = "520px";
+            tarjeta.style.boxShadow = "0 0 25px rgba(185,124,255,0.5)";
+          }
+        });
+      });
+    }, 300);
+
   } catch (err) {
     console.error('Error al cargar artistas:', err);
   }
 }
 
-// WhatsApp
+// 🟣 WhatsApp redirección
 function contratar(nombre){
   const numero = "5491157343551";
   const mensaje = encodeURIComponent(`Hola 👋, quiero contratar a ${nombre} (MMG | Representante de Artistas).`);
   window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank');
 }
 
+// 🟣 Cargar todo al inicio
 document.addEventListener('DOMContentLoaded', cargarArtistas);
