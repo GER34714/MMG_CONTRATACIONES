@@ -93,12 +93,15 @@ header h1{
   overflow:hidden;
   text-align:center;
   backdrop-filter:blur(6px);
-  transition:transform .3s;
+  transition:transform .3s, box-shadow .3s;
   display:flex;
   flex-direction:column;
-  height:520px; /* 🔹 Altura fija igual para todos */
+  height:520px; /* Todas igual */
 }
-.artista:hover{transform:scale(1.05);}
+.artista:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 40px rgba(185,124,255,0.8),0 0 60px rgba(212,175,55,0.5);
+}
 
 .artista img{
   width:100%;
@@ -132,8 +135,42 @@ header h1{
   margin-bottom:auto;
   overflow:hidden;
   display:-webkit-box;
-  -webkit-line-clamp:5; /* 🔹 Hasta 5 líneas visibles */
+  -webkit-line-clamp:5;
   -webkit-box-orient:vertical;
+}
+
+/* --- LEER MÁS / LEER MENOS --- */
+.descripcion-corta {
+  display:-webkit-box;
+  -webkit-line-clamp:5;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  transition:all .3s ease;
+  font-size:0.95rem;
+  color:#eee;
+  line-height:1.45em;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.descripcion-corta.expandido {
+  -webkit-line-clamp:unset;
+  max-height:none;
+}
+
+.leer-mas {
+  background:none;
+  border:none;
+  color:#00ffff;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:5px;
+  text-shadow:0 0 8px #00ffff;
+  transition:.2s;
+}
+.leer-mas:hover {
+  color:#fff;
+  text-shadow:0 0 12px #b97cff,0 0 20px #d4af37;
 }
 
 /* --- BOTÓN CONTRATAR --- */
@@ -250,12 +287,10 @@ footer{
   body { padding-top:60px; }
   .artista{
     width:85%;
-    height:470px; /* 🔹 Altura fija para móvil */
+    height:470px; /* Igual en móvil */
   }
   .artista img{height:200px;}
-  .info p{
-    -webkit-line-clamp:4; /* 🔹 4 líneas en móvil */
-  }
+  .info p{-webkit-line-clamp:4;}
   header h1{font-size:1.3rem;}
   .swiper{width:95%;}
   .btn-whatsapp{
