@@ -42,7 +42,7 @@ async function cargarArtistas() {
       centeredSlides: true,
       grabCursor: true,
       autoplay: {
-        delay: 4000,
+        delay: 4500,
         disableOnInteraction: false,
       },
       navigation: {
