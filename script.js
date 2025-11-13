@@ -66,9 +66,8 @@ async function cargarArtistas() {
     // 🟣 Detectar textos largos y mostrar botón "Leer más"
     setTimeout(() => {
       document.querySelectorAll('.descripcion-corta').forEach(parrafo => {
-        const lineHeight = parseFloat(getComputedStyle(parrafo).lineHeight);
-        const maxVisibleHeight = lineHeight * 4; // 4 líneas visibles
-        if (parrafo.scrollHeight > maxVisibleHeight + 2) {
+        const texto = parrafo.textContent.trim();
+        if (texto.length > 80) { // ← Límite reducido a 80 caracteres
           const boton = parrafo.nextElementSibling;
           boton.style.display = 'inline-block';
         }
